@@ -1,0 +1,3 @@
+# Python dependencies (add as needed)
+requests
+python-dotenv
