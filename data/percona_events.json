@@ -13,7 +13,29 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "android"
+      },
+      {
+        "key": "tech",
+        "value": "web"
+      },
+      {
+        "key": "topic",
+        "value": "google-cloud"
+      },
+      {
+        "key": "topic",
+        "value": "firebase"
+      },
+      {
+        "key": "language",
+        "value": "bahasa-indonesia"
+      }
+    ]
   },
   {
     "name": "APIdays Paris",
@@ -29,7 +51,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "api"
+      },
+      {
+        "key": "topic",
+        "value": "developer"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "XmasDev 2025",
@@ -45,7 +81,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "devops"
+      },
+      {
+        "key": "language",
+        "value": "italian"
+      }
+    ]
   },
   {
     "name": "DevFest Ecuador",
@@ -61,7 +107,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "google-cloud"
+      },
+      {
+        "key": "topic",
+        "value": "developer-tools"
+      },
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "spanish"
+      }
+    ]
   },
   {
     "name": "DevFest Piura 2025",
@@ -77,7 +141,29 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "android"
+      },
+      {
+        "key": "tech",
+        "value": "web"
+      },
+      {
+        "key": "topic",
+        "value": "google-cloud"
+      },
+      {
+        "key": "topic",
+        "value": "firebase"
+      },
+      {
+        "key": "language",
+        "value": "spanish"
+      }
+    ]
   },
   {
     "name": "AFUP Day 2026 Lille",
@@ -93,7 +179,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "php"
+      },
+      {
+        "key": "language",
+        "value": "french"
+      }
+    ]
   },
   {
     "name": "AFUP Day 2026 Paris",
@@ -109,7 +205,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "php"
+      },
+      {
+        "key": "language",
+        "value": "french"
+      }
+    ]
   },
   {
     "name": "AFUP Day 2026 Bordeaux",
@@ -125,7 +231,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "php"
+      },
+      {
+        "key": "language",
+        "value": "french"
+      }
+    ]
   },
   {
     "name": "AFUP Day 2026 Lyon",
@@ -141,7 +257,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "php"
+      },
+      {
+        "key": "language",
+        "value": "french"
+      }
+    ]
   },
   {
     "name": "Craft Conference 2026",
@@ -157,7 +283,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "software-development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      },
+      {
+        "key": "language",
+        "value": "hungarian"
+      }
+    ]
   },
   {
     "name": "wwktm: AI Conf 2026",
@@ -173,7 +313,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "ai"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "North American M365 Summit",
@@ -189,7 +339,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "microsoft"
+      },
+      {
+        "key": "topic",
+        "value": "cloud"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "DevFest Kolkata 2025",
@@ -205,7 +369,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "google"
+      },
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Touraine Tech #26",
@@ -221,7 +399,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "tech-conference"
+      },
+      {
+        "key": "topic",
+        "value": "technology"
+      },
+      {
+        "key": "topic",
+        "value": "innovation"
+      },
+      {
+        "key": "language",
+        "value": "french"
+      }
+    ]
   },
   {
     "name": "Agile On The Beach 2026",
@@ -237,7 +433,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "agile"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Conf42.com Internet of Things (IoT) 2025",
@@ -253,7 +459,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "iot"
+      },
+      {
+        "key": "topic",
+        "value": "internet-of-things"
+      },
+      {
+        "key": "topic",
+        "value": "technology"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Microsoft Fabric Community Conference - FABCON 2026 - SESSIONS",
@@ -269,7 +493,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "microsoft"
+      },
+      {
+        "key": "topic",
+        "value": "data"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "DevFest Calabar 2025",
@@ -285,7 +523,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "google"
+      },
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "DevFest Addis 2025",
@@ -301,7 +553,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "devops"
+      },
+      {
+        "key": "topic",
+        "value": "ai"
+      },
+      {
+        "key": "topic",
+        "value": "cloud"
+      },
+      {
+        "key": "language",
+        "value": "amharic"
+      }
+    ]
   },
   {
     "name": "DevFest'25 Kocaeli",
@@ -317,7 +587,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "google-cloud"
+      },
+      {
+        "key": "tech",
+        "value": "android"
+      },
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "turkish"
+      }
+    ]
   },
   {
     "name": "T3chfest",
@@ -333,7 +621,29 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "javascript"
+      },
+      {
+        "key": "tech",
+        "value": "python"
+      },
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "spanish"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Apres-Cyber Slopes Summit 2026",
@@ -349,7 +659,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "cybersecurity"
+      },
+      {
+        "key": "topic",
+        "value": "technology"
+      },
+      {
+        "key": "topic",
+        "value": "security"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "DevFest Armenia 2025",
@@ -365,7 +693,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "devops"
+      },
+      {
+        "key": "topic",
+        "value": "ai"
+      },
+      {
+        "key": "topic",
+        "value": "cloud"
+      },
+      {
+        "key": "language",
+        "value": "armenian"
+      }
+    ]
   },
   {
     "name": "DevFest Kathmandu 2025",
@@ -381,7 +727,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "google"
+      },
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Devfest Kigali 2025",
@@ -397,7 +757,29 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "android"
+      },
+      {
+        "key": "tech",
+        "value": "web"
+      },
+      {
+        "key": "topic",
+        "value": "google-cloud"
+      },
+      {
+        "key": "topic",
+        "value": "firebase"
+      },
+      {
+        "key": "language",
+        "value": "kinyarwanda"
+      }
+    ]
   },
   {
     "name": "DevFest Gwalior 2025",
@@ -413,7 +795,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "devops"
+      },
+      {
+        "key": "topic",
+        "value": "ai"
+      },
+      {
+        "key": "topic",
+        "value": "cloud"
+      },
+      {
+        "key": "language",
+        "value": "hindi"
+      }
+    ]
   },
   {
     "name": "DevFest Makassar 2025",
@@ -429,7 +829,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "devops"
+      },
+      {
+        "key": "topic",
+        "value": "cloud"
+      },
+      {
+        "key": "topic",
+        "value": "open-source"
+      },
+      {
+        "key": "language",
+        "value": "indonesian"
+      }
+    ]
   },
   {
     "name": "Cybersec Asia x Thailand International Cyber Week 2026 (powered by NCSA)",
@@ -445,7 +863,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "cybersecurity"
+      },
+      {
+        "key": "topic",
+        "value": "technology"
+      },
+      {
+        "key": "topic",
+        "value": "security"
+      },
+      {
+        "key": "language",
+        "value": "thai"
+      }
+    ]
   },
   {
     "name": "Codemotion Madrid",
@@ -461,7 +897,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "software-development"
+      },
+      {
+        "key": "topic",
+        "value": "agile"
+      },
+      {
+        "key": "language",
+        "value": "spanish"
+      }
+    ]
   },
   {
     "name": "DevOpsCon & MLCon 2026",
@@ -477,7 +927,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "devops"
+      },
+      {
+        "key": "topic",
+        "value": "ai"
+      },
+      {
+        "key": "topic",
+        "value": "machine-learning"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "stackconf 2026",
@@ -493,7 +961,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "various"
+      },
+      {
+        "key": "topic",
+        "value": "cloud-computing"
+      },
+      {
+        "key": "topic",
+        "value": "devops"
+      },
+      {
+        "key": "language",
+        "value": "german"
+      }
+    ]
   },
   {
     "name": "KotlinConf 2026",
@@ -509,7 +995,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "kotlin"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      },
+      {
+        "key": "language",
+        "value": "german"
+      }
+    ]
   },
   {
     "name": "DevCon #26 : sécurité / post-quantique / hacking",
@@ -525,7 +1025,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "security"
+      },
+      {
+        "key": "topic",
+        "value": "development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "IntelliC0N Austin 2026",
@@ -541,7 +1055,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "security"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Voxxed Days Zurich",
@@ -557,7 +1081,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "voxxed"
+      },
+      {
+        "key": "topic",
+        "value": "developer"
+      },
+      {
+        "key": "topic",
+        "value": "technology"
+      },
+      {
+        "key": "language",
+        "value": "german"
+      }
+    ]
   },
   {
     "name": "RubyConf Austria 2026",
@@ -573,7 +1115,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "ruby"
+      },
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      },
+      {
+        "key": "language",
+        "value": "german"
+      }
+    ]
   },
   {
     "name": "Visual Studio Live! @ Microsoft HQ 2026",
@@ -589,7 +1149,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "dotnet"
+      },
+      {
+        "key": "tech",
+        "value": "microsoft"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Programmable 2026 - Melbourne",
@@ -605,7 +1179,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Programmable 2026 - Sydney",
@@ -621,7 +1205,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "NDC Sydney 2026",
@@ -637,7 +1231,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "dotnet"
+      },
+      {
+        "key": "topic",
+        "value": "software-development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "PyTexas 2026",
@@ -653,7 +1261,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "python"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Green IO Paris",
@@ -669,7 +1287,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "green-it"
+      },
+      {
+        "key": "topic",
+        "value": "sustainability"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "DataGrillen 2026",
@@ -685,7 +1317,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "data"
+      },
+      {
+        "key": "topic",
+        "value": "data-management"
+      },
+      {
+        "key": "language",
+        "value": "german"
+      }
+    ]
   },
   {
     "name": "Perl Community Conference, Winter 2025",
@@ -701,7 +1347,8 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": []
   },
   {
     "name": "FOSSASIA Summit 2026",
@@ -717,7 +1364,37 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "open-source"
+      },
+      {
+        "key": "topic",
+        "value": "hardware"
+      },
+      {
+        "key": "topic",
+        "value": "linux"
+      },
+      {
+        "key": "topic",
+        "value": "web3"
+      },
+      {
+        "key": "topic",
+        "value": "security"
+      },
+      {
+        "key": "tech",
+        "value": "postgresql"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Future Tech 2026",
@@ -733,7 +1410,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "dutch"
+      }
+    ]
   },
   {
     "name": "Java Day Istanbul 2026",
@@ -749,7 +1436,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "java"
+      },
+      {
+        "key": "topic",
+        "value": "software-development"
+      },
+      {
+        "key": "language",
+        "value": "turkish"
+      }
+    ]
   },
   {
     "name": "SQLDay 2026",
@@ -765,7 +1466,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "sql"
+      },
+      {
+        "key": "topic",
+        "value": "data"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      },
+      {
+        "key": "language",
+        "value": "polish"
+      }
+    ]
   },
   {
     "name": "Dutch PHP Conference 2026",
@@ -781,7 +1500,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "php"
+      },
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "topic",
+        "value": "programming"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Appdevcon Conference 2026",
@@ -797,7 +1534,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "app-development"
+      },
+      {
+        "key": "topic",
+        "value": "software-engineering"
+      },
+      {
+        "key": "topic",
+        "value": "technology"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Webdevcon Conference 2026",
@@ -813,7 +1568,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "web-development"
+      },
+      {
+        "key": "topic",
+        "value": "frontend"
+      },
+      {
+        "key": "topic",
+        "value": "backend"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Voxxed Days Bucharest",
@@ -829,7 +1602,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "java"
+      },
+      {
+        "key": "tech",
+        "value": "kotlin"
+      },
+      {
+        "key": "tech",
+        "value": "scala"
+      },
+      {
+        "key": "language",
+        "value": "romanian"
+      }
+    ]
   },
   {
     "name": "TestBash Brighton 2025",
@@ -845,7 +1636,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "testing"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Security BSides Prague 2026",
@@ -861,7 +1662,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "security"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      },
+      {
+        "key": "language",
+        "value": "czech"
+      }
+    ]
   },
   {
     "name": "Baltic Ruby 2026",
@@ -877,7 +1692,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "ruby"
+      },
+      {
+        "key": "topic",
+        "value": "programming"
+      },
+      {
+        "key": "language",
+        "value": "german"
+      }
+    ]
   },
   {
     "name": "Blastoff Rails",
@@ -893,7 +1722,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "rails"
+      },
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "CypherCon 9 (2026)",
@@ -909,7 +1752,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "cypher"
+      },
+      {
+        "key": "topic",
+        "value": "database"
+      },
+      {
+        "key": "topic",
+        "value": "technology"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "wroclove.rb 2026",
@@ -925,7 +1786,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "ruby"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      },
+      {
+        "key": "language",
+        "value": "polish"
+      }
+    ]
   },
   {
     "name": "Domain-Driven Design Europe",
@@ -941,7 +1816,29 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "software"
+      },
+      {
+        "key": "tech",
+        "value": "domain-driven-design"
+      },
+      {
+        "key": "topic",
+        "value": "architecture"
+      },
+      {
+        "key": "topic",
+        "value": "software-architecture"
+      },
+      {
+        "key": "topic",
+        "value": "ai"
+      }
+    ]
   },
   {
     "name": "DataMeshLive",
@@ -957,7 +1854,29 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "data"
+      },
+      {
+        "key": "topic",
+        "value": "data-management"
+      },
+      {
+        "key": "topic",
+        "value": "data-science"
+      },
+      {
+        "key": "topic",
+        "value": "architecture"
+      },
+      {
+        "key": "topic",
+        "value": "software-architecture"
+      }
+    ]
   },
   {
     "name": "WeAreDevelopers World Congress 2026 - Europe",
@@ -973,7 +1892,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "python"
+      },
+      {
+        "key": "topic",
+        "value": "data"
+      },
+      {
+        "key": "topic",
+        "value": "open-source"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "SREday London 2026 Q1",
@@ -989,7 +1926,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "devops"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "HackConRD 2026",
@@ -1005,7 +1952,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "security"
+      },
+      {
+        "key": "language",
+        "value": "spanish"
+      }
+    ]
   },
   {
     "name": "Securing AI in the Real World: Call for Practitioner Stories – AI Security Conference",
@@ -1021,7 +1978,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "security"
+      },
+      {
+        "key": "topic",
+        "value": "ai"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "DevOpsDays Zurich 2026",
@@ -1037,7 +2008,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "devops"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      },
+      {
+        "key": "language",
+        "value": "german"
+      }
+    ]
   },
   {
     "name": "Weblica 2026",
@@ -1053,7 +2038,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      },
+      {
+        "key": "language",
+        "value": "croatian"
+      }
+    ]
   },
   {
     "name": "DevopsDay Prague 2026",
@@ -1069,7 +2068,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "devops"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      },
+      {
+        "key": "language",
+        "value": "czech"
+      }
+    ]
   },
   {
     "name": "Web Days Convention",
@@ -1085,7 +2098,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "web"
+      },
+      {
+        "key": "topic",
+        "value": "technology"
+      },
+      {
+        "key": "topic",
+        "value": "innovation"
+      },
+      {
+        "key": "language",
+        "value": "french"
+      }
+    ]
   },
   {
     "name": "DevOpsDays Geneva 2026",
@@ -1101,7 +2132,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "devops"
+      },
+      {
+        "key": "topic",
+        "value": "automation"
+      },
+      {
+        "key": "topic",
+        "value": "infrastructure"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "XtremeJ 2026",
@@ -1117,7 +2166,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "java"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "XtremeJS 2026",
@@ -1133,7 +2192,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "javascript"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "XtremePython 2026",
@@ -1149,7 +2218,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "python"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "XtremeAI 2026",
@@ -1165,7 +2244,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "ai"
+      },
+      {
+        "key": "topic",
+        "value": "artificial-intelligence"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "CfgMgmtCamp 2026 Ghent",
@@ -1181,7 +2274,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "configuration-management"
+      },
+      {
+        "key": "topic",
+        "value": "automation"
+      },
+      {
+        "key": "topic",
+        "value": "devops"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Monkigras 2026",
@@ -1197,7 +2308,17 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "web-development"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Container Days Hamburg 2026",
@@ -1213,7 +2334,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "container-days"
+      },
+      {
+        "key": "topic",
+        "value": "containers"
+      },
+      {
+        "key": "topic",
+        "value": "open-source"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "CFCamp 2026",
@@ -1229,7 +2368,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "coldfusion"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      },
+      {
+        "key": "language",
+        "value": "german"
+      }
+    ]
   },
   {
     "name": "WeAreDevelopers World Congress 2026 - North America",
@@ -1245,7 +2398,25 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "python"
+      },
+      {
+        "key": "topic",
+        "value": "data"
+      },
+      {
+        "key": "topic",
+        "value": "open-source"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Green IO Singapore",
@@ -1261,7 +2432,21 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "green"
+      },
+      {
+        "key": "topic",
+        "value": "sustainability"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   },
   {
     "name": "Cyber Security for Critical Assets Canada",
@@ -1277,6 +2462,16 @@
     "status": "pending_approval",
     "notified": false,
     "tags": [],
-    "comments": ""
+    "comments": "",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "cybersecurity"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ]
   }
 ]
