@@ -5,81 +5,138 @@ This repository tracks conference events and CFPs and can sync with Notion.
 Structure:
 - `data/` main JSON database and backups
 - `scripts/` pipeline scripts (stubs)
-- `tests/` pytest stubs
 - `.github/workflows/` scheduled daily run
 
+## Requirements
+- Python 3.11+
+- Pip packages: installed via `requirements.txt` (currently `requests`)
 
-
-```mermaid
-flowchart TD
-    %% ==== External Sources ====
-    A1["developers.events API: all-events.json, all-cfps.json"]
-    A2["GitHub Action\n(Scheduled Daily Run)"]
-
-    %% ==== Processes ====
-    P1["Fetch & Normalize\n• Fetch both JSONs\n• Validate HTTP 200 / JSON\n• Filter CFPs with untilDate > today\n• Join by hyperlink field"]
-    P2["Merge & Diff Logic\n• Compare new vs existing data\n• Add new CFPs (pending_approval)\n• Update existing CFPs\n• Mark removed as closed\n• Validate IDs, fields"]
-    P3["Local JSON DB\npercona_events.json\n• Full internal dataset\n• Contains approvals, tags, notified flags"]
-    P4["Sync JSON → Notion\n• Create/Update pages\n• Only overwrite system fields\n• Keep manager fields intact"]
-    P5["Sync Notion → JSON\n• Pull status, tags, comments\n• Validate values: approved/ignored/closed\n• Update JSON accordingly"]
-    P6["Slack Notifier\n• Send to channel via Webhook\n• Only if approved & not notified\n• Mark notified=True"]
-    P7["README Generator\n• Filter approved events\n• Generate Markdown Table\n• Update README.md"]
-    P8["Commit & Push\n• Stage updated JSON + README\n• Commit if changed\n• Push to repo main branch"]
-
-    %% ==== Data Stores ====
-    D1[("percona_events.json\nlocal database")]
-    D2[("open_cfps (in-memory)\nfiltered feed")]
-    D3[("Notion Database\n• Manager approval\n• Comments, Tags, Category")]
-    D4[("Slack Channel")]
-    D5[("README.md\nauto-generated table")]
-
-    %% ==== Relationships ====
-    A2 -->|Trigger daily run| P1
-    A1 -->|Download JSONs| P1
-    P1 -->|Validated CFP feed| D2
-
-    D2 -->|Compare| P2
-    P2 -->|Merged data| D1
-    D1 -->|Read existing DB| P2
-    P2 -->|Updated dataset| D1
-
-    P2 -->|Sync new events| P4
-    P4 -->|Create/Update rows| D3
-    D3 -->|Manager updates status/comments| P5
-    P5 -->|Sync manager fields| D1
-
-    D1 -->|Filter approved + not notified| P6
-    P6 -->|Post messages| D4
-    P6 -->|Update notified flag| D1
-    D1 -->|Approved events| P7
-    P7 -->|Markdown table| D5
-    D1 -->|Commit changes| P8
-    D5 -->|Commit changes| P8
-    P8 -->|Push to GitHub| A2
-
-    %% ==== Validations ====
-    subgraph Validations
-      V1["Data Validations\n• HTTP 200\n• JSON parse success\n• untilDate > today\n• Valid timestamp"]
-      V2["Merge Rules\n• Unique IDs\n• Required fields exist\n• Keep tags/comments/status\n• Auto-close missing CFPs"]
-      V3["Notion Sync Rules\n• Valid Notion token\n• Respect rate limits\n• Keep manual fields intact"]
-      V4["Slack Control\n• Avoid duplicates\n• 3 retries on fail\n• Log notification ID"]
-      V5["Save & Commit\n• File < 2MB\n• Schema verified\n• Only changed files committed"]
-    end
-
-    P1 --> V1
-    P2 --> V2
-    P4 --> V3
-    P6 --> V4
-    P8 --> V5
-
-    %% ==== Notes (as styled nodes) ====
-    N1["Manager Actions:\n• Approves / Ignores events\n• Adds categories or comments\n• Viewed in Table or Calendar (CFP Close)"]:::note
-    N2["Slack Channel Message Example:\n🎤 CFP OPEN: KCD Porto 2025\n📅 2025-11-03 → 2025-11-04\n📍 Porto, Portugal\n⏳ Closes: 2025-06-30\n🔗 https://cfp.kcdporto.com/"]:::note
-    N3["README Table Auto-Generated:\n| Event | CFP Close | Status | Category |\n|--------|------------|----------|------------|\n| KCD Porto 2025 | 2025-06-30 | Approved | Kubernetes |"]:::note
-
-    D3 -.-> N1
-    D4 -.-> N2
-    D5 -.-> N3
-
-    classDef note fill:#fffbe6,stroke:#f0c36d,color:#333,stroke-width:1px;
+## Setup (recommended with virtualenv)
+```bash
+cd /Users/edithpuclla/workspace/demos-super/percona-cfp-tracker
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
+Note: Activate the venv in each new shell with `source .venv/bin/activate`.
+
+## Run locally
+The pipeline fetches open CFPs, merges them into the local DB, and writes to `data/percona_events.json`.
+
+```bash
+python -m scripts.main
+python -m scripts.update_readme  # refresh the table in README
+```
+
+Output:
+- Logs start/end time and a summary of added/updated/closed events
+- Writes/updates `data/percona_events.json`
+
+## Environment variables (optional for future steps)
+These are used by stub scripts and the GitHub workflow for future integrations:
+- `NOTION_API_TOKEN`
+- `NOTION_DATABASE_ID`
+- `SLACK_WEBHOOK_URL`
+
+## GitHub Actions
+A daily workflow runs the pipeline at 06:00 UTC:
+- File: `.github/workflows/daily-update.yml`
+- Command: `python -m scripts.main`
+- Schedule (cron): `0 6 * * *`
+
+## Notes
+- `scripts/` is a Python package; imports use `from scripts.fetch_data import fetch_and_clean`.
+- The Notion/Slack scripts are stubs and can be implemented incrementally.
+
+## Current Open CFPs
+
+<!-- events:start -->
+| Name | CFP closes | Event dates | Location | Status | Link |
+| --- | --- | --- | --- | --- | --- |
+| DevFest Medan 2025 | 2025-11-08 | 2025-11-22 | Medan (Indonesia) | pending_approval | [link](https://app.advocu.com/events/68d0fd45a77811b0be23d4ef) |
+| APIdays Paris | 2025-11-09 | 2025-12-09 → 2025-12-11 | Paris (France) | pending_approval | [link](https://apidays.typeform.com/to/ILJeAaV8) |
+| XmasDev 2025 | 2025-11-09 | 2025-12-12 | Rome (Italy) | pending_approval | [link](https://sessionize.com/xmasdev-2025/) |
+| AFUP Day 2026 Bordeaux | 2025-11-10 | 2026-05-22 | Bordeaux (France) | pending_approval | [link](https://afup.org/event/afupday2026bordeaux/cfp) |
+| AFUP Day 2026 Lille | 2025-11-10 | 2026-05-22 | Lille (France) | pending_approval | [link](https://afup.org/event/afupday2026lille/cfp) |
+| AFUP Day 2026 Lyon | 2025-11-10 | 2026-05-22 | Lyon (France) | pending_approval | [link](https://afup.org/event/afupday2026lyon/cfp) |
+| AFUP Day 2026 Paris | 2025-11-10 | 2026-05-22 | Paris (France) | pending_approval | [link](https://afup.org/event/afupday2026paris/cfp) |
+| Craft Conference 2026 | 2025-11-10 | 2026-06-02 → 2026-06-05 | Budapest (Hungary) | pending_approval | [link](https://www.papercall.io/craft2026) |
+| DevFest Ecuador | 2025-11-10 | 2025-11-29 | Quito (Ecuador) | pending_approval | [link](https://app.advocu.com/events/68a812d0a8a700bbffec5b05) |
+| DevFest Piura 2025 | 2025-11-10 | 2025-12-13 | Piura (Peru) | pending_approval | [link](https://app.advocu.com/events/68d799f6d5b7f52455fc90c3) |
+| North American M365 Summit | 2025-11-15 | 2026-03-17 → 2026-03-18 | Online | pending_approval | [link](https://sessionize.com/north-american-m365-summit-17-18-mar/) |
+| wwktm: AI Conf 2026 | 2025-11-15 | 2026-01-10 → 2026-01-11 | Kathmandu (Nepal) | pending_approval | [link](https://www.papercall.io/ai-conf-2025) |
+| Agile On The Beach 2026 | 2025-11-16 | 2026-07-02 → 2026-07-03 | Falmouth (UK) | pending_approval | [link](https://sessionize.com/agile-on-the-beach-2026/) |
+| DevFest Kolkata 2025 | 2025-11-16 | 2025-12-21 | Kolkata (India) | pending_approval | [link](https://sessionize.com/devfest-kolkata-2025/) |
+| Touraine Tech #26 | 2025-11-16 | 2026-02-12 → 2026-02-13 | Tours (France) | pending_approval | [link](https://conference-hall.io/touraine-tech-2026) |
+| Conf42.com Internet of Things (IoT) 2025 | 2025-11-17 | 2025-12-18 | Online | pending_approval | [link](https://www.papercall.io/conf42-iot-2025) |
+| Microsoft Fabric Community Conference - FABCON 2026 - SESSIONS | 2025-11-20 | 2026-03-16 → 2026-03-20 | Atlanta, GA (USA) | pending_approval | [link](https://sessionize.com/fabcon2026sessions) |
+| DevFest Addis 2025 | 2025-11-21 | 2025-12-13 | Addis Ababa (Ethiopia) | pending_approval | [link](https://app.advocu.com/events/68f26abc519905361385d98b) |
+| DevFest Calabar 2025 | 2025-11-21 | 2025-12-13 | Calabar (Nigeria) | pending_approval | [link](https://sessionize.com/devfest-calabar-2025/) |
+| DevFest'25 Kocaeli | 2025-11-22 | 2025-12-06 | Izmit (Turkey) | pending_approval | [link](https://app.advocu.com/events/68af150f04c92b1c261973a6) |
+| T3chfest | 2025-11-23 | 2026-03-12 → 2026-03-13 | Madrid (Spain) | pending_approval | [link](https://t3chfest.es/2026/en/call-for-talks/) |
+| Apres-Cyber Slopes Summit 2026 | 2025-11-28 | 2026-02-26 → 2026-02-27 | Park City, UT (USA) | pending_approval | [link](https://sessionize.com/apres-cyber-slopes-summit-2026/) |
+| DevFest Armenia 2025 | 2025-11-29 | 2025-12-20 | Yerevan (Armenia) | pending_approval | [link](https://app.advocu.com/events/68eca6af7c50489f26c341f8) |
+| Codemotion Madrid | 2025-11-30 | 2026-04-20 → 2026-04-21 | Madrid (Spain) | pending_approval | [link](https://sessionize.com/codemotion-madrid-2026/) |
+| Cybersec Asia x Thailand International Cyber Week 2026 (powered by NCSA) | 2025-11-30 | 2026-02-04 → 2026-02-05 | Bangkok (Thailand) | pending_approval | [link](https://www.papercall.io/cybersecasia26) |
+| DevFest Gwalior 2025 | 2025-11-30 | 2025-12-20 | Gwalior (India) | pending_approval | [link](https://app.advocu.com/events/68ed31dd7c50489f26c41038) |
+| DevFest Kathmandu 2025 | 2025-11-30 | 2025-12-06 | Kathmandu (Nepal) | pending_approval | [link](https://sessionize.com/devfest-kathmandu-2025/) |
+| Devfest Kigali 2025 | 2025-11-30 | 2025-12-19 → 2025-12-20 | Kigali (Rwanda) | pending_approval | [link](https://app.advocu.com/events/68d2d492be9820a862b5f0f4) |
+| DevFest Makassar 2025 | 2025-11-30 | 2025-12-20 | Makassar (Indonesia) | pending_approval | [link](https://app.advocu.com/events/68f1cc1e51990536138511b2) |
+| DevOpsCon & MLCon 2026 | 2025-11-30 | 2026-04-20 → 2026-04-24 | Amsterdam (Netherlands) | pending_approval | [link](https://sessionize.com/devopsconmlcon-2026) |
+| KotlinConf 2026 | 2025-11-30 | 2026-05-20 → 2026-05-22 | Munich (Germany) | pending_approval | [link](https://sessionize.com/kotlinconf-2026) |
+| stackconf 2026 | 2025-11-30 | 2026-04-28 → 2026-04-29 | Munich (Germany) | pending_approval | [link](https://stackconf.eu/propose/) |
+| DevCon #26 : sécurité / post-quantique / hacking | 2025-12-01 | 2026-01-22 | Paris (France) | pending_approval | [link](https://docs.google.com/forms/d/e/1FAIpQLScAkKRuLpmUYUyxBP7uVCpWLxShOUxvDD7rKbAiz_4njAyMRQ/viewform?usp=header) |
+| IntelliC0N Austin 2026 | 2025-12-01 | 2026-02-06 | Austin, TX (USA) | pending_approval | [link](https://www.papercall.io/intellic0naustin2026) |
+| RubyConf Austria 2026 | 2025-12-01 | 2026-05-29 → 2026-05-31 | Vienna (Austria) | pending_approval | [link](https://www.papercall.io/rubyconfaustria2026) |
+| Visual Studio Live! @ Microsoft HQ 2026 | 2025-12-01 | 2026-07-27 → 2026-07-31 | Redmond, WA (USA) | pending_approval | [link](https://sessionize.com/vslive_Microsoft26) |
+| Voxxed Days Zurich | 2025-12-01 | 2026-03-24 | Zurich (Switzerland) | pending_approval | [link](https://vdz26.cfp.dev/) |
+| Programmable 2026 - Melbourne | 2025-12-02 | 2026-03-17 | Melbourne (Australia) | pending_approval | [link](https://sessionize.com/programmable-2026-melbourne) |
+| Programmable 2026 - Sydney | 2025-12-02 | 2026-03-19 | Sydney (Australia) | pending_approval | [link](https://sessionize.com/programmable-2026-sydney) |
+| NDC Sydney 2026 | 2025-12-06 | 2026-04-20 → 2026-04-24 | Sydney (Australia) | pending_approval | [link](https://sessionize.com/ndc-sydney-2026) |
+| PyTexas 2026 | 2025-12-07 | 2026-04-17 → 2026-04-19 | Austin, TX (USA) | pending_approval | [link](https://pretalx.com/pytexas-2026/cfp) |
+| Green IO Paris | 2025-12-09 | 2025-12-09 → 2025-12-11 | Paris (France) | pending_approval | [link](https://apidays.typeform.com/to/SMHd2wFE?=green-io-conference%3Dcall-for-speakers&typeform-source=greenio.tech) |
+| DataGrillen 2026 | 2025-12-14 | 2026-05-21 → 2026-05-22 | Lingen (Germany) | pending_approval | [link](https://sessionize.com/datagrillen-2026/) |
+| FOSSASIA Summit 2026 | 2025-12-15 | 2026-03-09 → 2026-03-10 | Bangkok (Thailand) | pending_approval | [link](https://summit.fossasia.org/speaker-registration) |
+| Future Tech 2026 | 2025-12-15 | 2026-03-11 | Utrecht (Netherlands) | pending_approval | [link](https://sessionize.com/future-tech-2026) |
+| Java Day Istanbul 2026 | 2025-12-15 | 2026-05-09 | Istanbul (Turkey) | pending_approval | [link](https://www.papercall.io/javadayistanbul2026) |
+| Perl Community Conference, Winter 2025 | 2025-12-15 | 2025-12-17 → 2025-12-18 | Austin, TX (USA) | pending_approval | [link](https://www.papercall.io/perlcommunityconferencew25) |
+| SQLDay 2026 | 2025-12-15 | 2026-05-11 → 2026-05-13 | Wroclaw (Poland) | pending_approval | [link](https://sessionize.com/sqlday-2026/) |
+| Appdevcon Conference 2026 | 2025-12-19 | 2026-03-10 → 2026-03-13 | Amsterdam (Netherlands) | pending_approval | [link](https://sessionize.com/adc-dpc-wdc-2026) |
+| Dutch PHP Conference 2026 | 2025-12-19 | 2026-03-10 → 2026-03-13 | Amsterdam (Netherlands) | pending_approval | [link](https://sessionize.com/adc-dpc-wdc-2026) |
+| Webdevcon Conference 2026 | 2025-12-19 | 2026-03-10 → 2026-03-13 | Amsterdam (Netherlands) | pending_approval | [link](https://sessionize.com/adc-dpc-wdc-2026) |
+| Voxxed Days Bucharest | 2025-12-21 | 2026-04-28 → 2026-04-29 | Bucharest (Romania) | pending_approval | [link](https://vdbuh2026.cfp.dev/#/login) |
+| TestBash Brighton 2025 | 2025-12-22 | 2025-10-01 → 2025-10-02 | Brighton (UK) | pending_approval | [link](https://www.ministryoftesting.com/contribute) |
+| Security BSides Prague 2026 | 2025-12-24 | 2026-04-23 → 2026-04-24 | Prague (Czech Republic) | pending_approval | [link](https://www.papercall.io/bsidesprg2026) |
+| Baltic Ruby 2026 | 2025-12-31 | 2026-06-12 → 2026-06-13 | Hamburg (Germany) | pending_approval | [link](https://www.papercall.io/balticruby2026) |
+| Blastoff Rails | 2026-01-11 | 2026-06-11 → 2026-06-12 | Albuquerque, NM (USA) | pending_approval | [link](https://www.papercall.io/blastoff) |
+| CypherCon 9 (2026) | 2026-01-12 | 2026-04-01 → 2026-04-02 | Milwaukee, WI (USA) | pending_approval | [link](https://sessionize.com/cyphercon-9-2026/) |
+| wroclove.rb 2026 | 2026-01-13 | 2026-04-17 → 2026-04-19 | Wroclaw (Poland) | pending_approval | [link](https://www.papercall.io/wrocloverb2026) |
+| DataMeshLive | 2026-01-16 | 2026-06-11 → 2026-06-12 | Antwerp (Belgium) | pending_approval | [link](https://2026.datameshlive.com/cfp) |
+| Domain-Driven Design Europe | 2026-01-16 | 2026-06-08 → 2026-06-12 | Antwerp (Belgium) | pending_approval | [link](https://2026.dddeurope.com/cfp/) |
+| WeAreDevelopers World Congress 2026 - Europe | 2026-01-16 | 2026-07-08 → 2026-07-10 | Berlin (Germany) | pending_approval | [link](https://sessionize.com/wearedevelopers-world-congress-2026-europe) |
+| SREday London 2026 Q1 | 2026-01-30 | 2026-03-12 | London (UK) | pending_approval | [link](https://www.papercall.io/sreday-2026-london-q1) |
+| DevOpsDays Zurich 2026 | 2026-01-31 | 2026-05-06 → 2026-05-07 | Winterthur (Switzerland) | pending_approval | [link](https://sessionize.com/devopsdays-zurich-2026) |
+| HackConRD 2026 | 2026-01-31 | 2026-03-27 → 2026-03-28 | Santo Domingo (Dominican Republic) | pending_approval | [link](https://www.papercall.io/hackconrd-2026-cfp) |
+| Securing AI in the Real World: Call for Practitioner Stories – AI Security Conference | 2026-01-31 | 2026-04-25 | Online | pending_approval | [link](https://www.papercall.io/ai-security-msec) |
+| Weblica 2026 | 2026-01-31 | 2026-05-08 | Strigova (Croatia) | pending_approval | [link](https://sessionize.com/weblica-2026) |
+| DevopsDay Prague 2026 | 2026-02-01 | 2026-04-29 | Prague (Czech Republic) | pending_approval | [link](https://www.papercall.io/dodprague26) |
+| Web Days Convention | 2026-02-02 | 2026-02-02 → 2026-02-06 | Aix-en-Provence (France) | pending_approval | [link](https://conference-hall.io/web-days-convention) |
+| DevOpsDays Geneva 2026 | 2026-02-06 | 2026-05-21 → 2026-05-22 | Geneva (Switzerland) | pending_approval | [link](https://devopsdays-geneva.ch/forms/InputFormSpkrsDodGe.php?who=pb0cb47956025e73c797e5e17f16fc38466e34f5ae) |
+| XtremeAI 2026 | 2026-02-10 | 2026-06-02 | Online | pending_approval | [link](https://forms.gle/UoGXzvoNi8C2vHkRA) |
+| XtremeJ 2026 | 2026-02-10 | 2026-05-12 | Online | pending_approval | [link](https://forms.gle/UoGXzvoNi8C2vHkRA) |
+| XtremeJS 2026 | 2026-02-10 | 2026-05-19 | Online | pending_approval | [link](https://forms.gle/UoGXzvoNi8C2vHkRA) |
+| XtremePython 2026 | 2026-02-10 | 2026-05-26 | Online | pending_approval | [link](https://forms.gle/UoGXzvoNi8C2vHkRA) |
+| CfgMgmtCamp 2026 Ghent | 2026-02-15 | 2026-02-02 → 2026-02-04 | Ghent (Belgium) | pending_approval | [link](https://cfp.cfgmgmtcamp.org/ghent2026/cfp) |
+| Container Days Hamburg 2026 | 2026-02-28 | 2026-09-02 → 2026-09-04 | Hamburg (Germany) | pending_approval | [link](https://sessionize.com/containerdays-hamburg-2026) |
+| Monkigras 2026 | 2026-02-28 | 2026-03-19 → 2026-03-20 | London (UK) | pending_approval | [link](https://www.papercall.io/monkigras26) |
+| CFCamp 2026 | 2026-03-09 | 2026-06-18 → 2026-06-19 | Munich (Germany) | pending_approval | [link](https://www.papercall.io/cfcamp2026) |
+| WeAreDevelopers World Congress 2026 - North America | 2026-03-31 | 2026-09-23 → 2026-09-25 | San Jose, CA (USA) | pending_approval | [link](https://sessionize.com/wearedevelopers-world-congress-2026-us) |
+| Green IO Singapore | 2026-04-14 | 2026-04-14 → 2026-04-15 | Singapore (Singapore) | pending_approval | [link](https://apidays.typeform.com/to/SMHd2wFE?=green-io-conference%3Dcall-for-speakers&typeform-source=greenio.tech) |
+| Cyber Security for Critical Assets Canada | 2026-05-03 | 2026-06-02 → 2026-06-03 | Calgary (Canada) | pending_approval | [link](https://canada.cs4ca.com/submit-speaking-proposal/) |
+<!-- events:end -->
+
+## Troubleshooting
+- ModuleNotFoundError: No module named 'requests'  
+  Ensure the virtualenv is activated (`source .venv/bin/activate`) and run `python -m pip install -r requirements.txt`.
+

@@ -1,8 +1,8 @@
-name: Daily Update
+name: Daily CFP Update
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Every 24h
+    - cron: '0 6 * * *' # every day 06:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -25,4 +25,4 @@ jobs:
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
-          python scripts/main.py
+          python -m scripts.main
