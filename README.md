@@ -58,23 +58,8 @@ A daily workflow runs the pipeline at 06:00 UTC:
 <!-- events:start -->
 | Name | CFP closes | Event dates | Location | Status | Source tags | Team tags | Link |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| DevFest Medan 2025 | 2025-11-08 | 2025-11-22 | Medan (Indonesia) | pending_approval | android, web, google-cloud, firebase, bahasa-indonesia |  | [link](https://app.advocu.com/events/68d0fd45a77811b0be23d4ef) |
-| APIdays Paris | 2025-11-09 | 2025-12-09 → 2025-12-11 | Paris (France) | pending_approval | api, developer, english |  | [link](https://apidays.typeform.com/to/ILJeAaV8) |
-| XmasDev 2025 | 2025-11-09 | 2025-12-12 | Rome (Italy) | pending_approval | devops, italian |  | [link](https://sessionize.com/xmasdev-2025/) |
-| AFUP Day 2026 Bordeaux | 2025-11-10 | 2026-05-22 | Bordeaux (France) | pending_approval | php, french |  | [link](https://afup.org/event/afupday2026bordeaux/cfp) |
-| AFUP Day 2026 Lille | 2025-11-10 | 2026-05-22 | Lille (France) | pending_approval | php, french |  | [link](https://afup.org/event/afupday2026lille/cfp) |
-| AFUP Day 2026 Lyon | 2025-11-10 | 2026-05-22 | Lyon (France) | pending_approval | php, french |  | [link](https://afup.org/event/afupday2026lyon/cfp) |
-| AFUP Day 2026 Paris | 2025-11-10 | 2026-05-22 | Paris (France) | pending_approval | php, french |  | [link](https://afup.org/event/afupday2026paris/cfp) |
-| Craft Conference 2026 | 2025-11-10 | 2026-06-02 → 2026-06-05 | Budapest (Hungary) | pending_approval | software-development, english, hungarian |  | [link](https://www.papercall.io/craft2026) |
-| DevFest Ecuador | 2025-11-10 | 2025-11-29 | Quito (Ecuador) | pending_approval | google-cloud, developer-tools, web-development, spanish |  | [link](https://app.advocu.com/events/68a812d0a8a700bbffec5b05) |
-| DevFest Piura 2025 | 2025-11-10 | 2025-12-13 | Piura (Peru) | pending_approval | android, web, google-cloud, firebase, spanish |  | [link](https://app.advocu.com/events/68d799f6d5b7f52455fc90c3) |
-| North American M365 Summit | 2025-11-15 | 2026-03-17 → 2026-03-18 | Online | pending_approval | microsoft, cloud, english |  | [link](https://sessionize.com/north-american-m365-summit-17-18-mar/) |
-| wwktm: AI Conf 2026 | 2025-11-15 | 2026-01-10 → 2026-01-11 | Kathmandu (Nepal) | pending_approval | ai, english |  | [link](https://www.papercall.io/ai-conf-2025) |
-| Agile On The Beach 2026 | 2025-11-16 | 2026-07-02 → 2026-07-03 | Falmouth (UK) | pending_approval | agile, english |  | [link](https://sessionize.com/agile-on-the-beach-2026/) |
-| DevFest Kolkata 2025 | 2025-11-16 | 2025-12-21 | Kolkata (India) | pending_approval | google, web-development, english |  | [link](https://sessionize.com/devfest-kolkata-2025/) |
-| Touraine Tech #26 | 2025-11-16 | 2026-02-12 → 2026-02-13 | Tours (France) | pending_approval | tech-conference, technology, innovation, french |  | [link](https://conference-hall.io/touraine-tech-2026) |
-| Conf42.com Internet of Things (IoT) 2025 | 2025-11-17 | 2025-12-18 | Online | pending_approval | iot, internet-of-things, technology, english |  | [link](https://www.papercall.io/conf42-iot-2025) |
 | Microsoft Fabric Community Conference - FABCON 2026 - SESSIONS | 2025-11-20 | 2026-03-16 → 2026-03-20 | Atlanta, GA (USA) | pending_approval | microsoft, data, english |  | [link](https://sessionize.com/fabcon2026sessions) |
+| DevConf.IN 2026 | 2025-11-21 | 2026-02-13 → 2026-02-14 | Pune (India) | pending_approval | open-source, red-hat, developer, community, community-building, free-software, technology, english |  | [link](https://pretalx.devconf.info/devconf-in-2026/cfp) |
 | DevFest Addis 2025 | 2025-11-21 | 2025-12-13 | Addis Ababa (Ethiopia) | pending_approval | devops, ai, cloud, amharic |  | [link](https://app.advocu.com/events/68f26abc519905361385d98b) |
 | DevFest Calabar 2025 | 2025-11-21 | 2025-12-13 | Calabar (Nigeria) | pending_approval | google, web-development, english |  | [link](https://sessionize.com/devfest-calabar-2025/) |
 | DevFest'25 Kocaeli | 2025-11-22 | 2025-12-06 | Izmit (Turkey) | pending_approval | google-cloud, android, web-development, turkish |  | [link](https://app.advocu.com/events/68af150f04c92b1c261973a6) |
@@ -97,6 +82,7 @@ A daily workflow runs the pipeline at 06:00 UTC:
 | Voxxed Days Zurich | 2025-12-01 | 2026-03-24 | Zurich (Switzerland) | pending_approval | voxxed, developer, technology, german |  | [link](https://vdz26.cfp.dev/) |
 | Programmable 2026 - Melbourne | 2025-12-02 | 2026-03-17 | Melbourne (Australia) | pending_approval | web-development, english |  | [link](https://sessionize.com/programmable-2026-melbourne) |
 | Programmable 2026 - Sydney | 2025-12-02 | 2026-03-19 | Sydney (Australia) | pending_approval | web-development, english |  | [link](https://sessionize.com/programmable-2026-sydney) |
+| KCD New Delhi | 2025-12-04 | 2026-02-21 | New Delhi (India) | pending_approval |  |  | [link](https://sessionize.com/kcd-new-delhi) |
 | NDC Sydney 2026 | 2025-12-06 | 2026-04-20 → 2026-04-24 | Sydney (Australia) | pending_approval | dotnet, software-development, english |  | [link](https://sessionize.com/ndc-sydney-2026) |
 | PyTexas 2026 | 2025-12-07 | 2026-04-17 → 2026-04-19 | Austin, TX (USA) | pending_approval | python, english |  | [link](https://pretalx.com/pytexas-2026/cfp) |
 | Green IO Paris | 2025-12-09 | 2025-12-09 → 2025-12-11 | Paris (France) | pending_approval | green-it, sustainability, english |  | [link](https://apidays.typeform.com/to/SMHd2wFE?=green-io-conference%3Dcall-for-speakers&typeform-source=greenio.tech) |
@@ -113,6 +99,7 @@ A daily workflow runs the pipeline at 06:00 UTC:
 | TestBash Brighton 2025 | 2025-12-22 | 2025-10-01 → 2025-10-02 | Brighton (UK) | pending_approval | testing, english |  | [link](https://www.ministryoftesting.com/contribute) |
 | Security BSides Prague 2026 | 2025-12-24 | 2026-04-23 → 2026-04-24 | Prague (Czech Republic) | pending_approval | security, english, czech |  | [link](https://www.papercall.io/bsidesprg2026) |
 | Baltic Ruby 2026 | 2025-12-31 | 2026-06-12 → 2026-06-13 | Hamburg (Germany) | pending_approval | ruby, programming, german |  | [link](https://www.papercall.io/balticruby2026) |
+| MiXiT 2026 | 2026-01-04 | 2026-04-16 → 2026-04-17 | Lyon (France) | pending_approval | devops, agile, french |  | [link](https://sessionize.com/mixit-2026/) |
 | Blastoff Rails | 2026-01-11 | 2026-06-11 → 2026-06-12 | Albuquerque, NM (USA) | pending_approval | rails, web-development, english |  | [link](https://www.papercall.io/blastoff) |
 | CypherCon 9 (2026) | 2026-01-12 | 2026-04-01 → 2026-04-02 | Milwaukee, WI (USA) | pending_approval | cypher, database, technology, english |  | [link](https://sessionize.com/cyphercon-9-2026/) |
 | wroclove.rb 2026 | 2026-01-13 | 2026-04-17 → 2026-04-19 | Wroclaw (Poland) | pending_approval | ruby, english, polish |  | [link](https://www.papercall.io/wrocloverb2026) |
@@ -128,13 +115,15 @@ A daily workflow runs the pipeline at 06:00 UTC:
 | Web Days Convention | 2026-02-02 | 2026-02-02 → 2026-02-06 | Aix-en-Provence (France) | pending_approval | web, technology, innovation, french |  | [link](https://conference-hall.io/web-days-convention) |
 | DevOpsDays Geneva 2026 | 2026-02-06 | 2026-05-21 → 2026-05-22 | Geneva (Switzerland) | pending_approval | devops, automation, infrastructure, english |  | [link](https://devopsdays-geneva.ch/forms/InputFormSpkrsDodGe.php?who=pb0cb47956025e73c797e5e17f16fc38466e34f5ae) |
 | XtremeAI 2026 | 2026-02-10 | 2026-06-02 | Online | pending_approval | ai, artificial-intelligence, english |  | [link](https://forms.gle/UoGXzvoNi8C2vHkRA) |
-| XtremeJ 2026 | 2026-02-10 | 2026-05-12 | Online | pending_approval | java, english |  | [link](https://forms.gle/UoGXzvoNi8C2vHkRA) |
-| XtremeJS 2026 | 2026-02-10 | 2026-05-19 | Online | pending_approval | javascript, english |  | [link](https://forms.gle/UoGXzvoNi8C2vHkRA) |
-| XtremePython 2026 | 2026-02-10 | 2026-05-26 | Online | pending_approval | python, english |  | [link](https://forms.gle/UoGXzvoNi8C2vHkRA) |
+| XtremeJ 2026 | 2026-02-10 | 2026-05-12 | Online | pending_approval |  |  | [link](https://forms.gle/UoGXzvoNi8C2vHkRA) |
+| XtremeJS 2026 | 2026-02-10 | 2026-05-19 | Online | pending_approval |  |  | [link](https://forms.gle/UoGXzvoNi8C2vHkRA) |
+| XtremePython 2026 | 2026-02-10 | 2026-05-26 | Online | pending_approval |  |  | [link](https://forms.gle/UoGXzvoNi8C2vHkRA) |
 | CfgMgmtCamp 2026 Ghent | 2026-02-15 | 2026-02-02 → 2026-02-04 | Ghent (Belgium) | pending_approval | configuration-management, automation, devops, english |  | [link](https://cfp.cfgmgmtcamp.org/ghent2026/cfp) |
 | Container Days Hamburg 2026 | 2026-02-28 | 2026-09-02 → 2026-09-04 | Hamburg (Germany) | pending_approval | container-days, containers, open-source, english |  | [link](https://sessionize.com/containerdays-hamburg-2026) |
 | Monkigras 2026 | 2026-02-28 | 2026-03-19 → 2026-03-20 | London (UK) | pending_approval | web-development, english |  | [link](https://www.papercall.io/monkigras26) |
+| Cloud Native Days Italy | 2026-03-06 | 2026-05-18 → 2026-05-19 | Bologna (Italy) | pending_approval | kubernetes, ai, fintech, italian, english, sre, platform, platform-engineering, developer-experience |  | [link](https://sessionize.com/cloud-native-days-italy-2026) |
 | CFCamp 2026 | 2026-03-09 | 2026-06-18 → 2026-06-19 | Munich (Germany) | pending_approval | coldfusion, english, german |  | [link](https://www.papercall.io/cfcamp2026) |
+| DevLille 2026 | 2026-03-31 | 2026-07-11 → 2026-07-12 | Lille (France) | pending_approval |  |  | [link](https://conference-hall.io/devlille-2026) |
 | WeAreDevelopers World Congress 2026 - North America | 2026-03-31 | 2026-09-23 → 2026-09-25 | San Jose, CA (USA) | pending_approval | python, data, open-source, english |  | [link](https://sessionize.com/wearedevelopers-world-congress-2026-us) |
 | Green IO Singapore | 2026-04-14 | 2026-04-14 → 2026-04-15 | Singapore (Singapore) | pending_approval | green, sustainability, english |  | [link](https://apidays.typeform.com/to/SMHd2wFE?=green-io-conference%3Dcall-for-speakers&typeform-source=greenio.tech) |
 | Cyber Security for Critical Assets Canada | 2026-05-03 | 2026-06-02 → 2026-06-03 | Calgary (Canada) | pending_approval | cybersecurity, english |  | [link](https://canada.cs4ca.com/submit-speaking-proposal/) |

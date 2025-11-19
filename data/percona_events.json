@@ -10,7 +10,7 @@
     "city": "Medan",
     "country": "Indonesia",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -48,7 +48,7 @@
     "city": "Paris",
     "country": "France",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -78,7 +78,7 @@
     "city": "Rome",
     "country": "Italy",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -104,7 +104,7 @@
     "city": "Quito",
     "country": "Ecuador",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -138,7 +138,7 @@
     "city": "Piura",
     "country": "Peru",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -176,7 +176,7 @@
     "city": "Lyon",
     "country": "France",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -202,7 +202,7 @@
     "city": "Lyon",
     "country": "France",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -228,7 +228,7 @@
     "city": "Lyon",
     "country": "France",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -254,7 +254,7 @@
     "city": "Lyon",
     "country": "France",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -280,7 +280,7 @@
     "city": "Budapest",
     "country": "Hungary",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -310,7 +310,7 @@
     "city": "Kathmandu",
     "country": "Nepal",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -336,7 +336,7 @@
     "city": "Online",
     "country": "Online",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -366,7 +366,7 @@
     "city": "Kolkata",
     "country": "India",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -396,7 +396,7 @@
     "city": "Tours",
     "country": "France",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -430,7 +430,7 @@
     "city": "Falmouth",
     "country": "UK",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -456,7 +456,7 @@
     "city": "Online",
     "country": "Online",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -2167,16 +2167,7 @@
     "notified": false,
     "tags": [],
     "comments": "",
-    "source_tags": [
-      {
-        "key": "topic",
-        "value": "java"
-      },
-      {
-        "key": "language",
-        "value": "english"
-      }
-    ]
+    "source_tags": []
   },
   {
     "name": "XtremeJS 2026",
@@ -2193,16 +2184,7 @@
     "notified": false,
     "tags": [],
     "comments": "",
-    "source_tags": [
-      {
-        "key": "tech",
-        "value": "javascript"
-      },
-      {
-        "key": "language",
-        "value": "english"
-      }
-    ]
+    "source_tags": []
   },
   {
     "name": "XtremePython 2026",
@@ -2219,16 +2201,7 @@
     "notified": false,
     "tags": [],
     "comments": "",
-    "source_tags": [
-      {
-        "key": "tech",
-        "value": "python"
-      },
-      {
-        "key": "language",
-        "value": "english"
-      }
-    ]
+    "source_tags": []
   },
   {
     "name": "XtremeAI 2026",
@@ -2473,5 +2446,178 @@
         "value": "english"
       }
     ]
+  },
+  {
+    "name": "DevConf.IN 2026",
+    "hyperlink": "https://www.devconf.info/in/",
+    "cfp_url": "https://pretalx.devconf.info/devconf-in-2026/cfp",
+    "cfp_close": 1763683200000,
+    "event_start": 1770940800000,
+    "event_end": 1771027200000,
+    "location": "Pune (India)",
+    "city": "Pune",
+    "country": "India",
+    "source": "developers.events",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "open-source"
+      },
+      {
+        "key": "tech",
+        "value": "red-hat"
+      },
+      {
+        "key": "topic",
+        "value": "developer"
+      },
+      {
+        "key": "topic",
+        "value": "community"
+      },
+      {
+        "key": "topic",
+        "value": "community-building"
+      },
+      {
+        "key": "topic",
+        "value": "free-software"
+      },
+      {
+        "key": "topic",
+        "value": "technology"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      }
+    ],
+    "status": "pending_approval",
+    "notified": false,
+    "tags": [],
+    "category": null,
+    "comments": ""
+  },
+  {
+    "name": "KCD New Delhi",
+    "hyperlink": "https://www.kcddelhi.com/",
+    "cfp_url": "https://sessionize.com/kcd-new-delhi",
+    "cfp_close": 1764806400000,
+    "event_start": 1771632000000,
+    "event_end": null,
+    "location": "New Delhi (India)",
+    "city": "New Delhi",
+    "country": "India",
+    "source": "developers.events",
+    "source_tags": [],
+    "status": "pending_approval",
+    "notified": false,
+    "tags": [],
+    "category": null,
+    "comments": ""
+  },
+  {
+    "name": "MiXiT 2026",
+    "hyperlink": "https://mixitconf.org",
+    "cfp_url": "https://sessionize.com/mixit-2026/",
+    "cfp_close": 1767484800000,
+    "event_start": 1776297600000,
+    "event_end": 1776384000000,
+    "location": "Lyon (France)",
+    "city": "Lyon",
+    "country": "France",
+    "source": "developers.events",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "devops"
+      },
+      {
+        "key": "topic",
+        "value": "agile"
+      },
+      {
+        "key": "language",
+        "value": "french"
+      }
+    ],
+    "status": "pending_approval",
+    "notified": false,
+    "tags": [],
+    "category": null,
+    "comments": ""
+  },
+  {
+    "name": "Cloud Native Days Italy",
+    "hyperlink": "https://cloudnativedaysitaly.org/",
+    "cfp_url": "https://sessionize.com/cloud-native-days-italy-2026",
+    "cfp_close": 1772755200000,
+    "event_start": 1779062400000,
+    "event_end": 1779148800000,
+    "location": "Bologna (Italy)",
+    "city": "Bologna",
+    "country": "Italy",
+    "source": "developers.events",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "kubernetes"
+      },
+      {
+        "key": "topic",
+        "value": "ai"
+      },
+      {
+        "key": "topic",
+        "value": "fintech"
+      },
+      {
+        "key": "language",
+        "value": "italian"
+      },
+      {
+        "key": "language",
+        "value": "english"
+      },
+      {
+        "key": "topic",
+        "value": "sre"
+      },
+      {
+        "key": "topic",
+        "value": "platform"
+      },
+      {
+        "key": "topic",
+        "value": "platform-engineering"
+      },
+      {
+        "key": "topic",
+        "value": "developer-experience"
+      }
+    ],
+    "status": "pending_approval",
+    "notified": false,
+    "tags": [],
+    "category": null,
+    "comments": ""
+  },
+  {
+    "name": "DevLille 2026",
+    "hyperlink": "https://devlille.fr/",
+    "cfp_url": "https://conference-hall.io/devlille-2026",
+    "cfp_close": 1774915200000,
+    "event_start": 1783728000000,
+    "event_end": 1783814400000,
+    "location": "Lille (France)",
+    "city": "Lille",
+    "country": "France",
+    "source": "developers.events",
+    "source_tags": [],
+    "status": "pending_approval",
+    "notified": false,
+    "tags": [],
+    "category": null,
+    "comments": ""
   }
 ]
