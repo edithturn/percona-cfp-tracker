@@ -64,7 +64,12 @@ def generate_markdown_table(events: list[dict[str, Any]], limit: int | None = No
     Build a GitHub-flavored Markdown table for non-closed events,
     sorted by CFP close date, including source_tags and team tags.
     """
-    active_events = [e for e in events if e.get("status") != "closed"]
+    # Only show non-closed and with CFP still open as of now
+    now_ms = int(datetime.now(timezone.utc).timestamp() * 1000)
+    active_events = [
+        e for e in events
+        if e.get("status") != "closed" and (isinstance(e.get("cfp_close"), (int, float)) and e["cfp_close"] > now_ms)
+    ]
 
     def sort_key(e: dict[str, Any]) -> tuple[int, str]:
         close = e.get("cfp_close")

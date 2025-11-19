@@ -39,6 +39,10 @@ These are used by stub scripts and the GitHub workflow for future integrations:
 - `NOTION_DATABASE_ID`
 - `SLACK_WEBHOOK_URL`
 
+Data source overrides (optional; defaults with fallback are built-in):
+- `ALL_EVENTS_URL` (e.g., a mirror for all-events.json)
+- `ALL_CFPS_URL` (e.g., a mirror for all-cfps.json)
+
 ## GitHub Actions
 A daily workflow runs the pipeline at 06:00 UTC:
 - File: `.github/workflows/daily-update.yml`

@@ -1,17 +1,18 @@
+import os
 import requests
 from datetime import datetime, timezone
 
-ALL_EVENTS_URL = "https://developers.events/all-events.json"
-ALL_CFPS_URL   = "https://developers.events/all-cfps.json"
+# Single source (developers.events). Allow optional env override; no mirror fallback.
+EVENTS_URL = os.getenv("ALL_EVENTS_URL") or "https://developers.events/all-events.json"
+CFPS_URL   = os.getenv("ALL_CFPS_URL")  or "https://developers.events/all-cfps.json"
 
 def fetch_and_clean():
     """
     Fetch public JSON feeds and return a list of 'open CFP' items with the fields we care about,
     including source_tags from all-events.json.
     """
-    events_resp = requests.get(ALL_EVENTS_URL, timeout=30); events_resp.raise_for_status()
-    cfps_resp   = requests.get(ALL_CFPS_URL,   timeout=30); cfps_resp.raise_for_status()
-
+    events_resp = requests.get(EVENTS_URL, timeout=30); events_resp.raise_for_status()
+    cfps_resp   = requests.get(CFPS_URL,   timeout=30); cfps_resp.raise_for_status()
     events_raw = events_resp.json()
     cfps_raw   = cfps_resp.json()
 
