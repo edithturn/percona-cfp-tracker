@@ -58,9 +58,6 @@ A daily workflow runs the pipeline at 06:00 UTC:
 <!-- events:start -->
 | Name | CFP closes | Event dates | Location | Status | Source tags | Team tags | Link |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| DevConf.IN 2026 | 2025-11-21 | 2026-02-13 → 2026-02-14 | Pune (India) | pending_approval | open-source, red-hat, developer, community, community-building, free-software, technology, english |  | [link](https://pretalx.devconf.info/devconf-in-2026/cfp) |
-| DevFest Addis 2025 | 2025-11-21 | 2025-12-13 | Addis Ababa (Ethiopia) | pending_approval | devops, ai, cloud, amharic |  | [link](https://app.advocu.com/events/68f26abc519905361385d98b) |
-| DevFest Calabar 2025 | 2025-11-21 | 2025-12-13 | Calabar (Nigeria) | pending_approval | google, web-development, english |  | [link](https://sessionize.com/devfest-calabar-2025/) |
 | DevFest'25 Kocaeli | 2025-11-22 | 2025-12-06 | Izmit (Turkey) | pending_approval | google-cloud, android, web-development, turkish |  | [link](https://app.advocu.com/events/68af150f04c92b1c261973a6) |
 | T3chfest | 2025-11-23 | 2026-03-12 → 2026-03-13 | Madrid (Spain) | pending_approval | javascript, python, web-development, spanish, english |  | [link](https://t3chfest.es/2026/en/call-for-talks/) |
 | Apres-Cyber Slopes Summit 2026 | 2025-11-28 | 2026-02-26 → 2026-02-27 | Park City, UT (USA) | pending_approval | cybersecurity, technology, security, english |  | [link](https://sessionize.com/apres-cyber-slopes-summit-2026/) |

@@ -520,7 +520,7 @@
     "city": "Calabar",
     "country": "Nigeria",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -550,7 +550,7 @@
     "city": "Addis Ababa",
     "country": "Ethiopia",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -2492,7 +2492,7 @@
         "value": "english"
       }
     ],
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "category": null,
