@@ -584,7 +584,7 @@
     "city": "Izmit",
     "country": "Turkey",
     "source": "developers.events",
-    "status": "pending_approval",
+    "status": "closed",
     "notified": false,
     "tags": [],
     "comments": "",
@@ -2614,6 +2614,130 @@
     "country": "France",
     "source": "developers.events",
     "source_tags": [],
+    "status": "pending_approval",
+    "notified": false,
+    "tags": [],
+    "category": null,
+    "comments": ""
+  },
+  {
+    "name": "CloudLand",
+    "hyperlink": "https://www.cloudland.org/",
+    "cfp_url": "https://my.doag.org/events/cloudland/cfp/",
+    "cfp_close": 1764288000000,
+    "event_start": 1779148800000,
+    "event_end": 1779408000000,
+    "location": "Soltau (Germany)",
+    "city": "Soltau",
+    "country": "Germany",
+    "source": "developers.events",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "cloud-native"
+      },
+      {
+        "key": "topic",
+        "value": "data"
+      },
+      {
+        "key": "topic",
+        "value": "devops"
+      },
+      {
+        "key": "topic",
+        "value": "platform-engineering"
+      },
+      {
+        "key": "topic",
+        "value": "open-source"
+      }
+    ],
+    "status": "pending_approval",
+    "notified": false,
+    "tags": [],
+    "category": null,
+    "comments": ""
+  },
+  {
+    "name": "Code BEAM Vancouver",
+    "hyperlink": "https://codebeamvancouver.com/",
+    "cfp_url": "https://docs.google.com/forms/d/e/1FAIpQLSfCiyfZBn4RiHF_3UvOqeuDevUjPO7FvZTuzOMRnE9o0udAGg/viewform?usp=dialog",
+    "cfp_close": 1765670400000,
+    "event_start": 1774224000000,
+    "event_end": null,
+    "location": "Vancouver, BC (Canada)",
+    "city": "Vancouver, BC",
+    "country": "Canada",
+    "source": "developers.events",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "elixir"
+      },
+      {
+        "key": "tech",
+        "value": "erlang"
+      }
+    ],
+    "status": "pending_approval",
+    "notified": false,
+    "tags": [],
+    "category": null,
+    "comments": ""
+  },
+  {
+    "name": "Agile Niort 2026",
+    "hyperlink": "https://agileniort.fr",
+    "cfp_url": "https://sessionize.com/agile-niort-2026",
+    "cfp_close": 1767657600000,
+    "event_start": 1773792000000,
+    "event_end": 1773878400000,
+    "location": "Niort (France)",
+    "city": "Niort",
+    "country": "France",
+    "source": "developers.events",
+    "source_tags": [
+      {
+        "key": "topic",
+        "value": "agile"
+      },
+      {
+        "key": "topic",
+        "value": "development"
+      },
+      {
+        "key": "language",
+        "value": "french"
+      }
+    ],
+    "status": "pending_approval",
+    "notified": false,
+    "tags": [],
+    "category": null,
+    "comments": ""
+  },
+  {
+    "name": "ElixirConf EU 2026",
+    "hyperlink": "https://www.elixirconf.eu/",
+    "cfp_url": "https://sessionize.com/elixirconf-eu-2026/",
+    "cfp_close": 1767657600000,
+    "event_start": 1776816000000,
+    "event_end": 1776988800000,
+    "location": "Malaga (Spain)",
+    "city": "Malaga",
+    "country": "Spain",
+    "source": "developers.events",
+    "source_tags": [
+      {
+        "key": "tech",
+        "value": "elixir"
+      },
+      {
+        "key": "tech",
+        "value": "erlang"
+      }
+    ],
     "status": "pending_approval",
     "notified": false,
     "tags": [],

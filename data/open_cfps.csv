@@ -1,7 +1,7 @@
 Name,CFP closes,Event dates,Location,Status,Source tags,Team tags,Link
-DevFest'25 Kocaeli,2025-11-22,2025-12-06,Izmit (Turkey),pending_approval,"google-cloud, android, web-development, turkish",,https://app.advocu.com/events/68af150f04c92b1c261973a6
 T3chfest,2025-11-23,2026-03-12 → 2026-03-13,Madrid (Spain),pending_approval,"javascript, python, web-development, spanish, english",,https://t3chfest.es/2026/en/call-for-talks/
 Apres-Cyber Slopes Summit 2026,2025-11-28,2026-02-26 → 2026-02-27,"Park City, UT (USA)",pending_approval,"cybersecurity, technology, security, english",,https://sessionize.com/apres-cyber-slopes-summit-2026/
+CloudLand,2025-11-28,2026-05-19 → 2026-05-22,Soltau (Germany),pending_approval,"cloud-native, data, devops, platform-engineering, open-source",,https://my.doag.org/events/cloudland/cfp/
 DevFest Armenia 2025,2025-11-29,2025-12-20,Yerevan (Armenia),pending_approval,"devops, ai, cloud, armenian",,https://app.advocu.com/events/68eca6af7c50489f26c341f8
 Codemotion Madrid,2025-11-30,2026-04-20 → 2026-04-21,Madrid (Spain),pending_approval,"software-development, agile, spanish",,https://sessionize.com/codemotion-madrid-2026/
 Cybersec Asia x Thailand International Cyber Week 2026 (powered by NCSA),2025-11-30,2026-02-04 → 2026-02-05,Bangkok (Thailand),pending_approval,"cybersecurity, technology, security, thai",,https://www.papercall.io/cybersecasia26
@@ -23,6 +23,7 @@ KCD New Delhi,2025-12-04,2026-02-21,New Delhi (India),pending_approval,,,https:/
 NDC Sydney 2026,2025-12-06,2026-04-20 → 2026-04-24,Sydney (Australia),pending_approval,"dotnet, software-development, english",,https://sessionize.com/ndc-sydney-2026
 PyTexas 2026,2025-12-07,2026-04-17 → 2026-04-19,"Austin, TX (USA)",pending_approval,"python, english",,https://pretalx.com/pytexas-2026/cfp
 Green IO Paris,2025-12-09,2025-12-09 → 2025-12-11,Paris (France),pending_approval,"green-it, sustainability, english",,https://apidays.typeform.com/to/SMHd2wFE?=green-io-conference%3Dcall-for-speakers&typeform-source=greenio.tech
+Code BEAM Vancouver,2025-12-14,2026-03-23,"Vancouver, BC (Canada)",pending_approval,"elixir, erlang",,https://docs.google.com/forms/d/e/1FAIpQLSfCiyfZBn4RiHF_3UvOqeuDevUjPO7FvZTuzOMRnE9o0udAGg/viewform?usp=dialog
 DataGrillen 2026,2025-12-14,2026-05-21 → 2026-05-22,Lingen (Germany),pending_approval,"data, data-management, german",,https://sessionize.com/datagrillen-2026/
 FOSSASIA Summit 2026,2025-12-15,2026-03-09 → 2026-03-10,Bangkok (Thailand),pending_approval,"open-source, hardware, linux, web3, security, postgresql, english",,https://summit.fossasia.org/speaker-registration
 Future Tech 2026,2025-12-15,2026-03-11,Utrecht (Netherlands),pending_approval,"web-development, dutch",,https://sessionize.com/future-tech-2026
@@ -37,6 +38,8 @@ TestBash Brighton 2025,2025-12-22,2025-10-01 → 2025-10-02,Brighton (UK),pendin
 Security BSides Prague 2026,2025-12-24,2026-04-23 → 2026-04-24,Prague (Czech Republic),pending_approval,"security, english, czech",,https://www.papercall.io/bsidesprg2026
 Baltic Ruby 2026,2025-12-31,2026-06-12 → 2026-06-13,Hamburg (Germany),pending_approval,"ruby, programming, german",,https://www.papercall.io/balticruby2026
 MiXiT 2026,2026-01-04,2026-04-16 → 2026-04-17,Lyon (France),pending_approval,"devops, agile, french",,https://sessionize.com/mixit-2026/
+Agile Niort 2026,2026-01-06,2026-03-18 → 2026-03-19,Niort (France),pending_approval,"agile, development, french",,https://sessionize.com/agile-niort-2026
+ElixirConf EU 2026,2026-01-06,2026-04-22 → 2026-04-24,Malaga (Spain),pending_approval,"elixir, erlang",,https://sessionize.com/elixirconf-eu-2026/
 Blastoff Rails,2026-01-11,2026-06-11 → 2026-06-12,"Albuquerque, NM (USA)",pending_approval,"rails, web-development, english",,https://www.papercall.io/blastoff
 CypherCon 9 (2026),2026-01-12,2026-04-01 → 2026-04-02,"Milwaukee, WI (USA)",pending_approval,"cypher, database, technology, english",,https://sessionize.com/cyphercon-9-2026/
 wroclove.rb 2026,2026-01-13,2026-04-17 → 2026-04-19,Wroclaw (Poland),pending_approval,"ruby, english, polish",,https://www.papercall.io/wrocloverb2026
