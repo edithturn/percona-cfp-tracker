@@ -58,7 +58,6 @@ A daily workflow runs the pipeline at 06:00 UTC:
 <!-- events:start -->
 | Name | CFP closes | Event dates | Location | Status | Source tags | Team tags | Link |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| T3chfest | 2025-11-23 | 2026-03-12 → 2026-03-13 | Madrid (Spain) | pending_approval | javascript, python, web-development, spanish, english |  | [link](https://t3chfest.es/2026/en/call-for-talks/) |
 | Apres-Cyber Slopes Summit 2026 | 2025-11-28 | 2026-02-26 → 2026-02-27 | Park City, UT (USA) | pending_approval | cybersecurity, technology, security, english |  | [link](https://sessionize.com/apres-cyber-slopes-summit-2026/) |
 | CloudLand | 2025-11-28 | 2026-05-19 → 2026-05-22 | Soltau (Germany) | pending_approval | cloud-native, data, devops, platform-engineering, open-source |  | [link](https://my.doag.org/events/cloudland/cfp/) |
 | DevFest Armenia 2025 | 2025-11-29 | 2025-12-20 | Yerevan (Armenia) | pending_approval | devops, ai, cloud, armenian |  | [link](https://app.advocu.com/events/68eca6af7c50489f26c341f8) |
