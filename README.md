@@ -7,10 +7,9 @@ Track open CFPs, keep a clean JSON database, and sync to a Notion database.
 - `scripts/` pipeline and utilities
 - `.github/workflows/` scheduled daily run (optional)
 
-## External ID (stable key)
-- Format: `source :: normalized-hyperlink :: event_start`
-- URL normalization: lowercase scheme/host, strip query/fragment (utm, etc.), drop trailing slash.
-- Rationale: avoids churn when names/cities change; IDs stay stable across minor edits.
+## Matching key (URL-based)
+- We match items by normalized URL (lowercase host/scheme, strip query/fragment, drop trailing slash).
+- If a source changes an event URL, a new page will be created and the old one will be marked Closed during reconcile.
 
 ## Requirements
 - Python 3.11+
@@ -45,7 +44,7 @@ python -m scripts.sync_notion --reconcile-missing
 # or: python -m scripts.sync_notion --reconcile-missing --archive-missing
 ```
 
-Reconcile (mark pages not in JSON as Closed and Active=false):
+Reconcile (mark pages not in JSON as “[CFP] Status = Closed”, or archive with the flag):
 ```bash
 
 # Safe preview first (no writes):
@@ -54,34 +53,30 @@ python -m scripts.sync_notion --reconcile-missing --dry-run
 # Only consider the first N JSON rows for reconcile
 python -m scripts.sync_notion --limit N --reconcile-missing --skip-upsert
 
-# Ensure required columns exist (Source CFP Status: Select, Active: Checkbox)
-python -m scripts.sync_notion --ensure-schema
-
-```
-
-## Optional Commands (run independently) on local machine
-- Refresh README table from DB:
-```bash
-python -m scripts.optional.update_readme
-```
-- Export CSV from DB:
-```bash
-python -m scripts.optional.export_csv
-```
-- Pretty preview (console) of first 10 events:
-```bash
-python -m scripts.main    # already prints a Markdown table preview
 ```
 
 ```
 Notes:
-- Upsert writes source-driven fields (Name, External ID, Source, Source Tags, URLs, dates, location).
-- Manual fields (Source CFP Status, Active, Category, Notified) are left intact except during reconcile.
+- Upsert writes source-driven fields (Name, Technology, URL, CFP URL, CFP Dates, Date, Event Location).
+- “[CFP] Status” (Status property in Notion) is set to Open on create and to Closed during reconcile; otherwise we don’t overwrite it.
 - Use `--rps 2` if you hit Notion rate limits.
+
+### Expected Notion properties
+- Name (Title)
+- URL (URL)
+- CFP URL (URL)
+- CFP Dates (Date)
+- Date (Date; start/end supported)
+- Event Location (Rich text)
+- Technology (Multi-select)
+- [CFP] Status (Status: Open, Active, Sent to Slack, Closed, Archived, Needs Review)
 
 ## Data source overrides (optional)
 - `ALL_EVENTS_URL`
 - `ALL_CFPS_URL`
+Defaults (if not set) pull from developers.events:
+- ALL_EVENTS_URL → https://developers.events/all-events.json
+- ALL_CFPS_URL → https://developers.events/all-cfps.json
 
 ## GitHub Actions (optional)
 Runs daily at 06:00 UTC:

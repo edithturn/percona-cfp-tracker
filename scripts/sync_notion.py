@@ -6,6 +6,7 @@ import time
 import argparse
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
+from urllib.parse import urlsplit
 
 import requests
 
@@ -95,11 +96,28 @@ def normalize_tag_names(value: Any) -> List[str]:
     return out
 
 
-def find_page_by_external_id(external_id: str) -> Optional[str]:
+def _normalize_url(url: str) -> str:
+    """Lowercase scheme/host, strip query/fragment, trim trailing slash."""
+    if not url:
+        return ""
+    try:
+        parts = urlsplit(str(url).strip())
+        scheme = (parts.scheme or "https").lower()
+        netloc = (parts.netloc or "").lower()
+        path = (parts.path or "").rstrip("/")
+        return f"{scheme}://{netloc}{path}"
+    except Exception:
+        text = str(url).strip().lower()
+        text = text.split("?", 1)[0].split("#", 1)[0]
+        return text.rstrip("/")
+
+def find_page_by_url(event_url: str) -> Optional[dict]:
+    """Return the first page (full object) where Event URL equals the normalized URL."""
+    norm = _normalize_url(event_url)
     payload = {
         "filter": {
-            "property": "External ID",
-            "rich_text": {"equals": external_id}
+            "property": "URL",
+            "url": {"equals": norm}
         },
         "page_size": 1,
     }
@@ -111,13 +129,11 @@ def find_page_by_external_id(external_id: str) -> Optional[str]:
     )
     r.raise_for_status()
     results = r.json().get("results", [])
-    if results:
-        return results[0]["id"]
-    return None
+    return results[0] if results else None
 
-def list_all_pages_with_external_id() -> List[Dict[str, str]]:
+def list_all_pages_with_url() -> List[Dict[str, str]]:
     """
-    Return a list of dicts: { 'page_id': str, 'external_id': str }
+    Return a list of dicts: { 'page_id': str, 'url_key': str }
     """
     pages: List[Dict[str, str]] = []
     payload: Dict[str, Any] = {"page_size": 100}
@@ -132,12 +148,12 @@ def list_all_pages_with_external_id() -> List[Dict[str, str]]:
         data = r.json()
         for p in data.get("results", []):
             props = p.get("properties", {})
-            rich = props.get("External ID", {}).get("rich_text", [])
-            text = ""
-            if isinstance(rich, list) and rich:
-                # Concatenate all text segments
-                text = "".join(seg.get("plain_text") or seg.get("text", {}).get("content", "") for seg in rich)
-            pages.append({"page_id": p["id"], "external_id": text or ""})
+            url_val = ""
+            try:
+                url_val = props.get("URL", {}).get("url") or ""
+            except Exception:
+                url_val = ""
+            pages.append({"page_id": p["id"], "url_key": _normalize_url(url_val)})
         if data.get("has_more") and data.get("next_cursor"):
             payload["start_cursor"] = data["next_cursor"]
         else:
@@ -192,23 +208,19 @@ def build_properties(ev: Dict[str, Any]) -> Dict[str, Any]:
     name = ev.get("name") or ""
     source_tags = normalize_tag_names(ev.get("source_tags"))
     properties: Dict[str, Any] = {
-        "Event Name": {"title": [{"text": {"content": name}}]},
-        "External ID": {"rich_text": [{"text": {"content": ev.get("external_id", "")}}]},
-        "Source": {"rich_text": [{"text": {"content": ev.get("source", "")}}]},
-        "Source Tags": {"multi_select": [{"name": t} for t in source_tags]},
-        "Event URL": {"url": ev.get("hyperlink") or None},
+        "Name": {"title": [{"text": {"content": name}}]},
+        "Technology": {"multi_select": [{"name": t} for t in source_tags]},
+        "URL": {"url": _normalize_url(ev.get("hyperlink") or "") or None},
         "CFP URL": {"url": ev.get("cfp_url") or None},
-        "CFP Close Date": {"date": {"start": to_iso_date(ev.get("cfp_close"))}},
-        "Event Dates": {
+        "CFP Dates": {"date": {"start": to_iso_date(ev.get("cfp_close"))}},
+        "Date": {
             "date": {
                 "start": to_iso_date(ev.get("event_start")),
                 "end": to_iso_date(ev.get("event_end")),
             }
         },
-        "Location": {"rich_text": [{"text": {"content": ev.get("location", "")}}]},
-        "City": {"rich_text": [{"text": {"content": ev.get("city", "")}}]},
-        "Country": {"rich_text": [{"text": {"content": ev.get("country", "")}}]},
-        # Intentionally NOT setting: "Source CFP Status", "Active", "Category", "Notified"
+        "Event Location": {"rich_text": [{"text": {"content": ev.get("location", "")}}]},
+        # Intentionally NOT setting: legacy status fields or manual workflow fields.
     }
     return properties
 
@@ -218,11 +230,8 @@ def create_page(ev: Dict[str, Any], dry_run: bool = False) -> None:
         "parent": {"database_id": NOTION_DATABASE_ID},
         "properties": build_properties(ev),
     }
-    # Defaults for newly created pages:
-    # - Active: true
-    # - Source CFP Status: Open
-    body["properties"]["Active"] = {"checkbox": True}
-    body["properties"]["Source CFP Status"] = {"select": {"name": "Open"}}
+    # Default workflow status for new pages
+    body["properties"]["[CFP] Status"] = {"status": {"name": "Open"}}
     if dry_run:
         print(f"[DRY-RUN] CREATE: {ev.get('name')} ({ev.get('external_id')})")
         return
@@ -250,16 +259,11 @@ def update_page(page_id: str, ev: Dict[str, Any], dry_run: bool = False) -> None
 
 def mark_page_closed(page_id: str, dry_run: bool = False) -> None:
     """
-    Update properties to reflect closed/ inactive state.
+    Mark page as Closed in the CFP Status select.
     """
-    body = {
-        "properties": {
-            "Source CFP Status": {"select": {"name": "Closed"}},
-            "Active": {"checkbox": False},
-        }
-    }
+    body = {"properties": {"[CFP] Status": {"status": {"name": "Closed"}}}}
     if dry_run:
-        print(f"[DRY-RUN] CLOSE MISSING: {page_id}")
+        print(f"[DRY-RUN] MARK CLOSED: {page_id}")
         return
     r = requests.patch(
         f"{NOTION_BASE_URL}/pages/{page_id}",
@@ -292,13 +296,13 @@ def upsert_events(events: List[Dict[str, Any]], limit: Optional[int], dry_run: b
         if limit is not None and processed >= limit:
             break
         processed += 1
-        external_id = ev.get("external_id")
-        if not external_id:
-            print(f"Skipping event without external_id: {ev.get('name')}")
+        url_key = _normalize_url(ev.get("hyperlink") or "")
+        if not url_key:
+            print(f"Skipping event without Event URL: {ev.get('name')}")
             continue
-        page_id = find_page_by_external_id(external_id)
-        if page_id:
-            update_page(page_id, ev, dry_run=dry_run)
+        page = find_page_by_url(url_key)
+        if page:
+            update_page(page["id"], ev, dry_run=dry_run)
             updated += 1
         else:
             create_page(ev, dry_run=dry_run)
@@ -307,7 +311,7 @@ def upsert_events(events: List[Dict[str, Any]], limit: Optional[int], dry_run: b
 
     return {"created": created, "updated": updated, "processed": processed}
 
-def reconcile_missing(current_external_ids: set[str], dry_run: bool, rps: float, archive: bool) -> Dict[str, int]:
+def reconcile_missing(current_url_keys: set[str], dry_run: bool, rps: float, archive: bool) -> Dict[str, int]:
     """
     Find pages in the DB whose External ID is not in current_external_ids and mark them closed
     or archive them.
@@ -315,13 +319,13 @@ def reconcile_missing(current_external_ids: set[str], dry_run: bool, rps: float,
     rate_delay = 1.0 / max(rps, 0.1)
     total = 0
     actions = 0
-    pages = list_all_pages_with_external_id()
+    pages = list_all_pages_with_url()
     for p in pages:
         total += 1
-        ext = p.get("external_id") or ""
-        if not ext:
+        key = p.get("url_key") or ""
+        if not key:
             continue
-        if ext not in current_external_ids:
+        if key not in current_url_keys:
             if archive:
                 archive_page(p["page_id"], dry_run=dry_run)
             else:
@@ -361,8 +365,8 @@ def main() -> None:
         result = upsert_events(events, limit=args.limit, dry_run=args.dry_run, rps=args.rps)
         print(f"Upsert complete: processed={result['processed']} created={result['created']} updated={result['updated']}")
         if args.reconcile_missing:
-            current_ids = {e.get("external_id") for e in events if e.get("external_id")}
-            rec = reconcile_missing(current_ids, dry_run=args.dry_run, rps=args.rps, archive=args.archive_missing)
+            current_keys = {_normalize_url(e.get("hyperlink") or "") for e in events if e.get("hyperlink")}
+            rec = reconcile_missing(current_keys, dry_run=args.dry_run, rps=args.rps, archive=args.archive_missing)
             mode = "archived" if args.archive_missing else "marked closed"
             print(f"Reconcile complete: scanned={rec['scanned']} {mode}={rec['affected']}")
     except requests.HTTPError as e:

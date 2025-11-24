@@ -2,9 +2,28 @@ from datetime import datetime, timezone
 import argparse
 from scripts.fetch_data import fetch_and_clean
 from scripts.merge_diff import merge_and_save, load_db
-from scripts.optional.json_to_csv import to_date_str
 
 DB_PATH = "data/percona_events.json"
+
+def to_date_str(ts):
+    """Convert epoch ms (int) or ISO-like string to YYYY-MM-DD for preview output."""
+    if ts is None:
+        return ""
+    try:
+        if isinstance(ts, (int, float)):
+            dt = datetime.fromtimestamp(int(ts) / 1000, tz=timezone.utc)
+            return dt.strftime("%Y-%m-%d")
+    except Exception:
+        pass
+    if isinstance(ts, str):
+        for fmt in ("%Y-%m-%d", "%Y-%m-%dT%H:%M:%S%z", "%Y-%m-%dT%H:%M:%SZ"):
+            try:
+                dt = datetime.strptime(ts, fmt)
+                return dt.strftime("%Y-%m-%d")
+            except Exception:
+                continue
+        return ts[:10]
+    return ""
 
 def main():
     parser = argparse.ArgumentParser(description="Fetch open CFPs and update local DB.")
