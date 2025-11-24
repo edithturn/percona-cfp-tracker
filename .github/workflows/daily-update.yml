@@ -26,13 +26,11 @@ jobs:
         env:
           NOTION_API_TOKEN: ${{ secrets.NOTION_API_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
+          # 1) Refresh JSON (only open CFPs)
           python -m scripts.main
-      - name: Refresh README and CSV
-        run: |
-          python -m scripts.update_readme
-          python -m scripts.json_to_csv
+          # 2) Upsert + reconcile in Notion (create/update current events, then close missing)
+          python -m scripts.sync_notion --reconcile-missing
       - name: Commit and push changes if any
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then

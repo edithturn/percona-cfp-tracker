@@ -1,8 +1,377 @@
 #!/usr/bin/env python3
-"""Push/pull between Notion and JSON (stub)."""
+from __future__ import annotations
+
+import os
+import time
+import argparse
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional
+
+import requests
+
+from scripts.merge_diff import load_db
+
+NOTION_API_TOKEN = os.getenv("NOTION_API_TOKEN")
+NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID")
+NOTION_VERSION = "2022-06-28"
+NOTION_BASE_URL = "https://api.notion.com/v1"
+
+
+def require_env() -> None:
+    missing = []
+    if not NOTION_API_TOKEN:
+        missing.append("NOTION_API_TOKEN")
+    if not NOTION_DATABASE_ID:
+        missing.append("NOTION_DATABASE_ID")
+    if missing:
+        raise SystemExit(
+            f"Missing required environment variables: {', '.join(missing)}"
+        )
+
+
+def notion_headers() -> Dict[str, str]:
+    return {
+        "Authorization": f"Bearer {NOTION_API_TOKEN}",
+        "Notion-Version": NOTION_VERSION,
+        "Content-Type": "application/json",
+    }
+
+
+def to_iso_date(value: Any) -> Optional[str]:
+    if not value:
+        return None
+    try:
+        # Support epoch ms
+        if isinstance(value, (int, float)) or (isinstance(value, str) and value.isdigit()):
+            return datetime.fromtimestamp(int(value) / 1000, tz=timezone.utc).strftime("%Y-%m-%d")
+        # Support already formatted strings like YYYY-MM-DD or ISO8601
+        if isinstance(value, str):
+            for fmt in ("%Y-%m-%d", "%Y-%m-%dT%H:%M:%S%z", "%Y-%m-%dT%H:%M:%SZ"):
+                try:
+                    dt = datetime.strptime(value, fmt)
+                    return dt.strftime("%Y-%m-%d")
+                except Exception:
+                    continue
+            # Fallback: pass through if looks like date
+            return value[:10] if len(value) >= 10 else value
+    except Exception:
+        return None
+
+
+def normalize_tag_names(value: Any) -> List[str]:
+    """
+    Convert a heterogeneous tags value (list[str] | list[dict] | dict | str | None)
+    into a flat list of tag names suitable for Notion multi_select [{'name': name}, ...].
+    """
+    def tag_to_str(tag: Any) -> str:
+        if isinstance(tag, str):
+            return tag
+        if isinstance(tag, dict):
+            # Try common keys; fall back to any truthy string representation.
+            for k in ("name", "label", "title", "tag", "value"):
+                v = tag.get(k)
+                if isinstance(v, str) and v:
+                    return v
+            # last resort: stringify
+            return str(tag)
+        return str(tag)
+
+    if not value:
+        return []
+    if isinstance(value, (list, tuple)):
+        names = [tag_to_str(t) for t in value]
+    else:
+        names = [tag_to_str(value)]
+    # Deduplicate and drop empties while preserving order
+    seen = set()
+    out: List[str] = []
+    for n in names:
+        n = (n or "").strip()
+        if not n:
+            continue
+        if n not in seen:
+            seen.add(n)
+            out.append(n)
+    return out
+
+
+def find_page_by_external_id(external_id: str) -> Optional[str]:
+    payload = {
+        "filter": {
+            "property": "External ID",
+            "rich_text": {"equals": external_id}
+        },
+        "page_size": 1,
+    }
+    r = requests.post(
+        f"{NOTION_BASE_URL}/databases/{NOTION_DATABASE_ID}/query",
+        headers=notion_headers(),
+        json=payload,
+        timeout=30,
+    )
+    r.raise_for_status()
+    results = r.json().get("results", [])
+    if results:
+        return results[0]["id"]
+    return None
+
+def list_all_pages_with_external_id() -> List[Dict[str, str]]:
+    """
+    Return a list of dicts: { 'page_id': str, 'external_id': str }
+    """
+    pages: List[Dict[str, str]] = []
+    payload: Dict[str, Any] = {"page_size": 100}
+    while True:
+        r = requests.post(
+            f"{NOTION_BASE_URL}/databases/{NOTION_DATABASE_ID}/query",
+            headers=notion_headers(),
+            json=payload,
+            timeout=30,
+        )
+        r.raise_for_status()
+        data = r.json()
+        for p in data.get("results", []):
+            props = p.get("properties", {})
+            rich = props.get("External ID", {}).get("rich_text", [])
+            text = ""
+            if isinstance(rich, list) and rich:
+                # Concatenate all text segments
+                text = "".join(seg.get("plain_text") or seg.get("text", {}).get("content", "") for seg in rich)
+            pages.append({"page_id": p["id"], "external_id": text or ""})
+        if data.get("has_more") and data.get("next_cursor"):
+            payload["start_cursor"] = data["next_cursor"]
+        else:
+            break
+    return pages
+
+def get_database() -> Dict[str, Any]:
+    r = requests.get(
+        f"{NOTION_BASE_URL}/databases/{NOTION_DATABASE_ID}",
+        headers=notion_headers(),
+        timeout=30,
+    )
+    r.raise_for_status()
+    return r.json()
+
+def ensure_schema(verbose: bool = True) -> None:
+    """
+    Ensure required properties exist:
+      - External ID (rich_text) is already expected
+      - Source CFP Status (select) with 'Closed'
+      - Active (checkbox)
+    """
+    db = get_database()
+    props = db.get("properties", {}) or {}
+    wanted: Dict[str, Any] = {}
+    if "Source CFP Status" not in props:
+        wanted["Source CFP Status"] = {"select": {"options": [{"name": "Closed", "color": "red"}]}}
+    if "Active" not in props:
+        wanted["Active"] = {"checkbox": {}}
+    if not wanted:
+        if verbose:
+            print("Schema OK: properties exist (Source CFP Status, Active).")
+        return
+    if verbose:
+        print(f"Adding missing properties to database: {', '.join(wanted.keys())}")
+    r = requests.patch(
+        f"{NOTION_BASE_URL}/databases/{NOTION_DATABASE_ID}",
+        headers=notion_headers(),
+        json={"properties": wanted},
+        timeout=30,
+    )
+    r.raise_for_status()
+    if verbose:
+        print("Schema update complete.")
+
+
+def build_properties(ev: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Map JSON fields to your Notion property names (only source-driven properties).
+    Leaves manual fields (Source CFP Status, Active, Category, Notified) untouched.
+    """
+    name = ev.get("name") or ""
+    source_tags = normalize_tag_names(ev.get("source_tags"))
+    properties: Dict[str, Any] = {
+        "Event Name": {"title": [{"text": {"content": name}}]},
+        "External ID": {"rich_text": [{"text": {"content": ev.get("external_id", "")}}]},
+        "Source": {"rich_text": [{"text": {"content": ev.get("source", "")}}]},
+        "Source Tags": {"multi_select": [{"name": t} for t in source_tags]},
+        "Event URL": {"url": ev.get("hyperlink") or None},
+        "CFP URL": {"url": ev.get("cfp_url") or None},
+        "CFP Close Date": {"date": {"start": to_iso_date(ev.get("cfp_close"))}},
+        "Event Dates": {
+            "date": {
+                "start": to_iso_date(ev.get("event_start")),
+                "end": to_iso_date(ev.get("event_end")),
+            }
+        },
+        "Location": {"rich_text": [{"text": {"content": ev.get("location", "")}}]},
+        "City": {"rich_text": [{"text": {"content": ev.get("city", "")}}]},
+        "Country": {"rich_text": [{"text": {"content": ev.get("country", "")}}]},
+        # Intentionally NOT setting: "Source CFP Status", "Active", "Category", "Notified"
+    }
+    return properties
+
+
+def create_page(ev: Dict[str, Any], dry_run: bool = False) -> None:
+    body = {
+        "parent": {"database_id": NOTION_DATABASE_ID},
+        "properties": build_properties(ev),
+    }
+    # Defaults for newly created pages:
+    # - Active: true
+    # - Source CFP Status: Open
+    body["properties"]["Active"] = {"checkbox": True}
+    body["properties"]["Source CFP Status"] = {"select": {"name": "Open"}}
+    if dry_run:
+        print(f"[DRY-RUN] CREATE: {ev.get('name')} ({ev.get('external_id')})")
+        return
+    r = requests.post(
+        f"{NOTION_BASE_URL}/pages",
+        headers=notion_headers(),
+        json=body,
+        timeout=30,
+    )
+    r.raise_for_status()
+
+
+def update_page(page_id: str, ev: Dict[str, Any], dry_run: bool = False) -> None:
+    body = {"properties": build_properties(ev)}
+    if dry_run:
+        print(f"[DRY-RUN] UPDATE: {ev.get('name')} ({ev.get('external_id')})")
+        return
+    r = requests.patch(
+        f"{NOTION_BASE_URL}/pages/{page_id}",
+        headers=notion_headers(),
+        json=body,
+        timeout=30,
+    )
+    r.raise_for_status()
+
+def mark_page_closed(page_id: str, dry_run: bool = False) -> None:
+    """
+    Update properties to reflect closed/ inactive state.
+    """
+    body = {
+        "properties": {
+            "Source CFP Status": {"select": {"name": "Closed"}},
+            "Active": {"checkbox": False},
+        }
+    }
+    if dry_run:
+        print(f"[DRY-RUN] CLOSE MISSING: {page_id}")
+        return
+    r = requests.patch(
+        f"{NOTION_BASE_URL}/pages/{page_id}",
+        headers=notion_headers(),
+        json=body,
+        timeout=30,
+    )
+    r.raise_for_status()
+
+def archive_page(page_id: str, dry_run: bool = False) -> None:
+    if dry_run:
+        print(f"[DRY-RUN] ARCHIVE MISSING: {page_id}")
+        return
+    r = requests.patch(
+        f"{NOTION_BASE_URL}/pages/{page_id}",
+        headers=notion_headers(),
+        json={"archived": True},
+        timeout=30,
+    )
+    r.raise_for_status()
+
+
+def upsert_events(events: List[Dict[str, Any]], limit: Optional[int], dry_run: bool, rps: float) -> Dict[str, int]:
+    rate_delay = 1.0 / max(rps, 0.1)
+    created = 0
+    updated = 0
+    processed = 0
+
+    for ev in events:
+        if limit is not None and processed >= limit:
+            break
+        processed += 1
+        external_id = ev.get("external_id")
+        if not external_id:
+            print(f"Skipping event without external_id: {ev.get('name')}")
+            continue
+        page_id = find_page_by_external_id(external_id)
+        if page_id:
+            update_page(page_id, ev, dry_run=dry_run)
+            updated += 1
+        else:
+            create_page(ev, dry_run=dry_run)
+            created += 1
+        time.sleep(rate_delay)
+
+    return {"created": created, "updated": updated, "processed": processed}
+
+def reconcile_missing(current_external_ids: set[str], dry_run: bool, rps: float, archive: bool) -> Dict[str, int]:
+    """
+    Find pages in the DB whose External ID is not in current_external_ids and mark them closed
+    or archive them.
+    """
+    rate_delay = 1.0 / max(rps, 0.1)
+    total = 0
+    actions = 0
+    pages = list_all_pages_with_external_id()
+    for p in pages:
+        total += 1
+        ext = p.get("external_id") or ""
+        if not ext:
+            continue
+        if ext not in current_external_ids:
+            if archive:
+                archive_page(p["page_id"], dry_run=dry_run)
+            else:
+                mark_page_closed(p["page_id"], dry_run=dry_run)
+            actions += 1
+            time.sleep(rate_delay)
+    return {"scanned": total, "affected": actions}
+
 
 def main() -> None:
-    print("sync_notion: not implemented yet")
+    parser = argparse.ArgumentParser(description="Sync JSON events to Notion database (upsert by External ID).")
+    parser.add_argument("--db", default="data/percona_events.json", help="Path to JSON DB file")
+    parser.add_argument("--limit", type=int, default=None, help="Limit number of events to process")
+    parser.add_argument("--dry-run", action="store_true", help="Print intended actions without calling Notion API")
+    parser.add_argument("--rps", type=float, default=2.5, help="Requests per second throttle (<= 3 recommended)")
+    parser.add_argument("--reconcile-missing", action="store_true", help="Mark or archive pages not present in the JSON")
+    parser.add_argument("--archive-missing", action="store_true", help="When reconciling, archive missing pages instead of marking closed")
+    parser.add_argument("--skip-upsert", action="store_true", help="Skip create/update phase; only run reconcile if requested")
+    parser.add_argument("--ensure-schema", action="store_true", help="Ensure required Notion properties exist before syncing")
+    args = parser.parse_args()
+
+    require_env()
+    if args.ensure_schema:
+        try:
+            ensure_schema(verbose=not args.dry_run)
+        except requests.HTTPError as e:
+            print(f"Schema check/update failed: {getattr(e.response, 'status_code', '?')} {getattr(e.response, 'text', '')}")
+            raise
+    events = load_db(args.db)
+    if not isinstance(events, list):
+        raise SystemExit(f"Invalid DB content (expected list): {args.db}")
+
+    start = datetime.now(timezone.utc)
+    print(f"Notion sync started at {start.strftime('%Y-%m-%d %H:%M:%S %Z')}")
+
+    try:
+        result = upsert_events(events, limit=args.limit, dry_run=args.dry_run, rps=args.rps)
+        print(f"Upsert complete: processed={result['processed']} created={result['created']} updated={result['updated']}")
+        if args.reconcile_missing:
+            current_ids = {e.get("external_id") for e in events if e.get("external_id")}
+            rec = reconcile_missing(current_ids, dry_run=args.dry_run, rps=args.rps, archive=args.archive_missing)
+            mode = "archived" if args.archive_missing else "marked closed"
+            print(f"Reconcile complete: scanned={rec['scanned']} {mode}={rec['affected']}")
+    except requests.HTTPError as e:
+        print(f"HTTP error: {getattr(e.response, 'status_code', '?')} {getattr(e.response, 'text', '')}")
+        raise
+
+    end = datetime.now(timezone.utc)
+    print(f"Notion sync finished at {end.strftime('%Y-%m-%d %H:%M:%S %Z')} (duration: {(end - start).seconds}s)")
+
 
 if __name__ == "__main__":
     main()
