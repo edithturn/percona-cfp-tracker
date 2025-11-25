@@ -131,6 +131,31 @@ def find_page_by_url(event_url: str) -> Optional[dict]:
     results = r.json().get("results", [])
     return results[0] if results else None
 
+def find_pages_by_name_and_start(name: str, start_iso: Optional[str]) -> List[dict]:
+    """
+    Fallback search: find pages by Name + Date start.
+    Useful when the event URL changed and we want to locate/close prior rows.
+    """
+    if not name or not start_iso:
+        return []
+    payload = {
+        "filter": {
+            "and": [
+                {"property": "Name", "title": {"equals": name}},
+                {"property": "Date", "date": {"equals": start_iso}},
+            ]
+        },
+        "page_size": 25,
+    }
+    r = requests.post(
+        f"{NOTION_BASE_URL}/databases/{NOTION_DATABASE_ID}/query",
+        headers=notion_headers(),
+        json=payload,
+        timeout=30,
+    )
+    r.raise_for_status()
+    return r.json().get("results", [])
+
 def list_all_pages_with_url() -> List[Dict[str, str]]:
     """
     Return a list of dicts: { 'page_id': str, 'url_key': str }
@@ -233,7 +258,7 @@ def create_page(ev: Dict[str, Any], dry_run: bool = False) -> None:
     # Default workflow status for new pages
     body["properties"]["[CFP] Status"] = {"status": {"name": "Open"}}
     if dry_run:
-        print(f"[DRY-RUN] CREATE: {ev.get('name')} ({ev.get('external_id')})")
+        print(f"[DRY-RUN] CREATE: {ev.get('name')} ({_normalize_url(ev.get('hyperlink') or '')})")
         return
     r = requests.post(
         f"{NOTION_BASE_URL}/pages",
@@ -244,17 +269,50 @@ def create_page(ev: Dict[str, Any], dry_run: bool = False) -> None:
     r.raise_for_status()
 
 
-def update_page(page_id: str, ev: Dict[str, Any], dry_run: bool = False) -> None:
-    body = {"properties": build_properties(ev)}
+def _merge_multi_select(existing: List[Dict[str, Any]], incoming_names: List[str]) -> List[Dict[str, str]]:
+    """
+    Merge existing multi-select values with incoming names (case-insensitive union).
+    We keep all already selected options and add any new names from JSON.
+    """
+    seen: Dict[str, str] = {}
+    for opt in (existing or []):
+        name = (opt.get("name") or "").strip()
+        if name:
+            seen[name.lower()] = name
+    for n in (incoming_names or []):
+        nn = (n or "").strip()
+        if not nn:
+            continue
+        key = nn.lower()
+        if key not in seen:
+            seen[key] = nn
+    return [{"name": v} for v in seen.values()]
+
+def update_page(page_id: str, ev: Dict[str, Any], dry_run: bool = False, existing_page: Optional[dict] = None) -> None:
+    """
+    Update only the allowed fields:
+      - CFP Dates (single date from ev['cfp_close'])
+      - CFP URL (url)
+      - Technology (multi-select) → merge (preserve existing + add new)
+    Do not touch other properties to preserve manual edits.
+    """
+    props: Dict[str, Any] = {}
+    # CFP Dates
+    props["CFP Dates"] = {"date": {"start": to_iso_date(ev.get("cfp_close"))}}
+    # CFP URL
+    props["CFP URL"] = {"url": ev.get("ccp_url") or ev.get("cfp_url") or None}
+    # Technology merge
+    incoming = normalize_tag_names(ev.get("source_tags"))
+    existing = []
+    if isinstance(existing_page, dict):
+        existing = (existing_page.get("properties") or {}).get("Technology", {}).get("multi_select", [])
+    props["Technology"] = {"multi_select": _merge_multi_select(existing, incoming)}
+
+    body = {"properties": props}
     if dry_run:
-        print(f"[DRY-RUN] UPDATE: {ev.get('name')} ({ev.get('external_id')})")
+        print(f"[DRY-RUN] UPDATE: {ev.get('name')} ({_normalize_url(ev.get('hyperlink') or '')})")
         return
-    r = requests.patch(
-        f"{NOTION_BASE_URL}/pages/{page_id}",
-        headers=notion_headers(),
-        json=body,
-        timeout=30,
-    )
+    r = requests.patch(f"{NOTION_BASE_URL}/pages/{page_id}", headers=notion_headers(), json=body, timeout=30)
     r.raise_for_status()
 
 def mark_page_closed(page_id: str, dry_run: bool = False) -> None:
@@ -301,8 +359,38 @@ def upsert_events(events: List[Dict[str, Any]], limit: Optional[int], dry_run: b
             print(f"Skipping event without Event URL: {ev.get('name')}")
             continue
         page = find_page_by_url(url_key)
+        # Fallback: if no page found by URL, try to locate by Name + Date.start (URL might have changed)
+        if not page:
+            start_iso = to_iso_date(ev.get("event_start"))
+            candidates = find_pages_by_name_and_start(ev.get("name") or "", start_iso)
+            # If any candidate already has the same normalized URL, treat it as the match
+            for cand in candidates:
+                cand_url = ""
+                try:
+                    cand_url = cand.get("properties", {}).get("URL", {}).get("url") or ""
+                except Exception:
+                    cand_url = ""
+                if _normalize_url(cand_url) == url_key:
+                    page = cand
+                    break
+            # If still not found, close duplicates that match name+date but have different URL
+            if not page and candidates:
+                for cand in candidates:
+                    cand_url = ""
+                    try:
+                        cand_url = cand.get("properties", {}).get("URL", {}).get("url") or ""
+                    except Exception:
+                        cand_url = ""
+                    if _normalize_url(cand_url) != url_key:
+                        if dry_run:
+                            print(f"[DRY-RUN] CLOSE DUPLICATE (URL changed): {ev.get('name')} "
+                                  f"{_normalize_url(cand_url)} -> {url_key}")
+                            time.sleep(rate_delay)
+                        else:
+                            mark_page_closed(cand["id"], dry_run=False)
+                            time.sleep(rate_delay)
         if page:
-            update_page(page["id"], ev, dry_run=dry_run)
+            update_page(page["id"], ev, dry_run=dry_run, existing_page=page)
             updated += 1
         else:
             create_page(ev, dry_run=dry_run)
@@ -365,7 +453,9 @@ def main() -> None:
         result = upsert_events(events, limit=args.limit, dry_run=args.dry_run, rps=args.rps)
         print(f"Upsert complete: processed={result['processed']} created={result['created']} updated={result['updated']}")
         if args.reconcile_missing:
-            current_keys = {_normalize_url(e.get("hyperlink") or "") for e in events if e.get("hyperlink")}
+            # Respect --limit for reconcile: only consider the first N events when provided
+            subset = events[: args.limit] if args.limit is not None else events
+            current_keys = {_normalize_url(e.get("hyperlink") or "") for e in subset if e.get("hyperlink")}
             rec = reconcile_missing(current_keys, dry_run=args.dry_run, rps=args.rps, archive=args.archive_missing)
             mode = "archived" if args.archive_missing else "marked closed"
             print(f"Reconcile complete: scanned={rec['scanned']} {mode}={rec['affected']}")
