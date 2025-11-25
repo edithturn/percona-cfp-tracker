@@ -17,6 +17,8 @@ NOTION_DATABASE_ID = os.getenv("NOTION_DATABASE_ID")
 NOTION_VERSION = "2022-06-28"
 NOTION_BASE_URL = "https://api.notion.com/v1"
 
+_DB_PROPERTIES_CACHE: Optional[Dict[str, Any]] = None
+
 
 def require_env() -> None:
     missing = []
@@ -115,10 +117,7 @@ def find_page_by_url(event_url: str) -> Optional[dict]:
     """Return the first page (full object) where Event URL equals the normalized URL."""
     norm = _normalize_url(event_url)
     payload = {
-        "filter": {
-            "property": "URL",
-            "url": {"equals": norm}
-        },
+        "filter": {"property": "URL", "url": {"equals": norm}},
         "page_size": 1,
     }
     r = requests.post(
@@ -129,7 +128,19 @@ def find_page_by_url(event_url: str) -> Optional[dict]:
     )
     r.raise_for_status()
     results = r.json().get("results", [])
-    return results[0] if results else None
+    if not results:
+        return None
+    page = results[0]
+    # Safety: only treat as match if [CFP] Source == developers.events
+    try:
+        props = page.get("properties", {}) or {}
+        src_prop = (props.get("[CFP] Source", {}) or {})
+        src_name = (src_prop.get("select", {}) or {}).get("name") or (src_prop.get("status", {}) or {}).get("name")
+        if src_name == "developers.events":
+            return page
+    except Exception:
+        pass
+    return None
 
 def find_pages_by_name_and_start(name: str, start_iso: Optional[str]) -> List[dict]:
     """
@@ -173,6 +184,14 @@ def list_all_pages_with_url() -> List[Dict[str, str]]:
         data = r.json()
         for p in data.get("results", []):
             props = p.get("properties", {})
+            # Only include developers.events rows
+            try:
+                src_prop = (props.get("[CFP] Source", {}) or {})
+                src_name = (src_prop.get("select", {}) or {}).get("name") or (src_prop.get("status", {}) or {}).get("name")
+                if src_name != "developers.events":
+                    continue
+            except Exception:
+                continue
             url_val = ""
             try:
                 url_val = props.get("URL", {}).get("url") or ""
@@ -234,7 +253,6 @@ def build_properties(ev: Dict[str, Any]) -> Dict[str, Any]:
     source_tags = normalize_tag_names(ev.get("source_tags"))
     properties: Dict[str, Any] = {
         "Name": {"title": [{"text": {"content": name}}]},
-        "Technology": {"multi_select": [{"name": t} for t in source_tags]},
         "URL": {"url": _normalize_url(ev.get("hyperlink") or "") or None},
         "CFP URL": {"url": ev.get("cfp_url") or None},
         "CFP Dates": {"date": {"start": to_iso_date(ev.get("cfp_close"))}},
@@ -247,6 +265,19 @@ def build_properties(ev: Dict[str, Any]) -> Dict[str, Any]:
         "Event Location": {"rich_text": [{"text": {"content": ev.get("location", "")}}]},
         # Intentionally NOT setting: legacy status fields or manual workflow fields.
     }
+    # Technology property: support multi_select or rich_text; otherwise skip
+    try:
+        db_props = get_database().get("properties", {}) or {}
+        tech_prop = db_props.get("Technology")
+        if isinstance(tech_prop, dict):
+            ptype = tech_prop.get("type")
+            if ptype == "multi_select":
+                properties["Technology"] = {"multi_select": [{"name": t} for t in source_tags]}
+            elif ptype == "rich_text":
+                properties["Technology"] = {"rich_text": [{"text": {"content": ", ".join(source_tags)}}]}
+    except Exception:
+        # if we can't read schema, leave Technology out to avoid type mismatch
+        pass
     return properties
 
 
@@ -255,8 +286,23 @@ def create_page(ev: Dict[str, Any], dry_run: bool = False) -> None:
         "parent": {"database_id": NOTION_DATABASE_ID},
         "properties": build_properties(ev),
     }
-    # Default workflow status for new pages
-    body["properties"]["[CFP] Status"] = {"status": {"name": "Open"}}
+    # Default workflow properties for new pages from developers.events
+    try:
+        db_props = get_database().get("properties", {}) or {}
+    except Exception:
+        db_props = {}
+    if "[CFP] Status" in db_props:
+        st_type = (db_props.get("[CFP] Status") or {}).get("type")
+        if st_type == "status":
+            body["properties"]["[CFP] Status"] = {"status": {"name": "Open"}}
+        elif st_type == "select":
+            body["properties"]["[CFP] Status"] = {"select": {"name": "Open"}}
+    if "[CFP] Source" in db_props:
+        src_type = (db_props.get("[CFP] Source") or {}).get("type")
+        if src_type == "select":
+            body["properties"]["[CFP] Source"] = {"select": {"name": "developers.events"}}
+        elif src_type == "status":
+            body["properties"]["[CFP] Source"] = {"status": {"name": "developers.events"}}
     if dry_run:
         print(f"[DRY-RUN] CREATE: {ev.get('name')} ({_normalize_url(ev.get('hyperlink') or '')})")
         return
@@ -300,13 +346,19 @@ def update_page(page_id: str, ev: Dict[str, Any], dry_run: bool = False, existin
     # CFP Dates
     props["CFP Dates"] = {"date": {"start": to_iso_date(ev.get("cfp_close"))}}
     # CFP URL
-    props["CFP URL"] = {"url": ev.get("ccp_url") or ev.get("cfp_url") or None}
-    # Technology merge
-    incoming = normalize_tag_names(ev.get("source_tags"))
-    existing = []
-    if isinstance(existing_page, dict):
-        existing = (existing_page.get("properties") or {}).get("Technology", {}).get("multi_select", [])
-    props["Technology"] = {"multi_select": _merge_multi_select(existing, incoming)}
+    props["CFP URL"] = {"url": ev.get("cfp_url") or None}
+    # Technology update: only if property is multi_select; skip if rich_text to avoid overwrite/type errors
+    try:
+        db_props = get_database().get("properties", {}) or {}
+        tech_prop = db_props.get("Technology")
+        if isinstance(tech_prop, dict) and tech_prop.get("type") == "multi_select":
+            incoming = normalize_tag_names(ev.get("source_tags"))
+            existing = []
+            if isinstance(existing_page, dict):
+                existing = (existing_page.get("properties") or {}).get("Technology", {}).get("multi_select", [])
+            props["Technology"] = {"multi_select": _merge_multi_select(existing, incoming)}
+    except Exception:
+        pass
 
     body = {"properties": props}
     if dry_run:
@@ -319,7 +371,19 @@ def mark_page_closed(page_id: str, dry_run: bool = False) -> None:
     """
     Mark page as Closed in the CFP Status select.
     """
-    body = {"properties": {"[CFP] Status": {"status": {"name": "Closed"}}}}
+    # Detect property type and set accordingly
+    try:
+        db_props = get_database().get("properties", {}) or {}
+        st = db_props.get("[CFP] Status") or {}
+        ptype = st.get("type")
+        if ptype == "status":
+            body = {"properties": {"[CFP] Status": {"status": {"name": "Closed"}}}}
+        elif ptype == "select":
+            body = {"properties": {"[CFP] Status": {"select": {"name": "Closed"}}}}
+        else:
+            body = {}
+    except Exception:
+        body = {"properties": {"[CFP] Status": {"status": {"name": "Closed"}}}}
     if dry_run:
         print(f"[DRY-RUN] MARK CLOSED: {page_id}")
         return
@@ -344,11 +408,13 @@ def archive_page(page_id: str, dry_run: bool = False) -> None:
     r.raise_for_status()
 
 
-def upsert_events(events: List[Dict[str, Any]], limit: Optional[int], dry_run: bool, rps: float) -> Dict[str, int]:
+def upsert_events(events: List[Dict[str, Any]], limit: Optional[int], dry_run: bool, rps: float) -> Dict[str, Any]:
     rate_delay = 1.0 / max(rps, 0.1)
     created = 0
     updated = 0
     processed = 0
+    created_items: List[Dict[str, str]] = []
+    updated_items: List[Dict[str, str]] = []
 
     for ev in events:
         if limit is not None and processed >= limit:
@@ -374,30 +440,52 @@ def upsert_events(events: List[Dict[str, Any]], limit: Optional[int], dry_run: b
                     page = cand
                     break
             # If still not found, close duplicates that match name+date but have different URL
-            if not page and candidates:
-                for cand in candidates:
+        if not page and candidates:
+            for cand in candidates:
+                cand_props = cand.get("properties", {}) or {}
+                # Skip team-managed or non-developers.events rows
+                try:
+                    src_prop = cand_props.get("[CFP] Source", {}) or {}
+                    src = (src_prop.get("select", {}) or {}).get("name") or (src_prop.get("status", {}) or {}).get("name")
+                except Exception:
+                    src = None
+                # If it's not from developers.events, never touch it
+                if src != "developers.events":
+                    continue
+                # Compare URL after normalization
+                try:
+                    cand_url = cand_props.get("URL", {}).get("url") or ""
+                except Exception:
                     cand_url = ""
-                    try:
-                        cand_url = cand.get("properties", {}).get("URL", {}).get("url") or ""
-                    except Exception:
-                        cand_url = ""
-                    if _normalize_url(cand_url) != url_key:
-                        if dry_run:
-                            print(f"[DRY-RUN] CLOSE DUPLICATE (URL changed): {ev.get('name')} "
-                                  f"{_normalize_url(cand_url)} -> {url_key}")
-                            time.sleep(rate_delay)
-                        else:
-                            mark_page_closed(cand["id"], dry_run=False)
-                            time.sleep(rate_delay)
+                if _normalize_url(cand_url) != url_key:
+                    if dry_run:
+                        print(
+                            f"[DRY-RUN] CLOSE DUPLICATE (URL changed): {ev.get('name')} "
+                            f"{_normalize_url(cand_url)} -> {url_key}"
+                        )
+                        time.sleep(rate_delay)
+                    else:
+                        mark_page_closed(cand["id"], dry_run=False)
+                        time.sleep(rate_delay)
         if page:
             update_page(page["id"], ev, dry_run=dry_run, existing_page=page)
             updated += 1
+            updated_items.append({
+                "name": ev.get("name") or "",
+                "url": _normalize_url(ev.get("hyperlink") or ""),
+                "cfp": to_iso_date(ev.get("cfp_close")) or "",
+            })
         else:
             create_page(ev, dry_run=dry_run)
             created += 1
+            created_items.append({
+                "name": ev.get("name") or "",
+                "url": _normalize_url(ev.get("hyperlink") or ""),
+                "cfp": to_iso_date(ev.get("cfp_close")) or "",
+            })
         time.sleep(rate_delay)
 
-    return {"created": created, "updated": updated, "processed": processed}
+    return {"created": created, "updated": updated, "processed": processed, "created_items": created_items, "updated_items": updated_items}
 
 def reconcile_missing(current_url_keys: set[str], dry_run: bool, rps: float, archive: bool) -> Dict[str, int]:
     """
@@ -452,6 +540,36 @@ def main() -> None:
     try:
         result = upsert_events(events, limit=args.limit, dry_run=args.dry_run, rps=args.rps)
         print(f"Upsert complete: processed={result['processed']} created={result['created']} updated={result['updated']}")
+        # Post-upsert summary tables (created/updated)
+        try:
+            def ellipsize(text: str, width: int) -> str:
+                s = "" if text is None else str(text)
+                return s if len(s) <= width else (s[: max(0, width - 1)] + "…")
+            def print_table(title: str, rows: List[Dict[str, str]], max_rows: int = 10) -> None:
+                if not rows:
+                    return
+                cols = [("Name", 44), ("URL", 64), ("CFP", 12)]
+                header_line = " | ".join(h.ljust(w) for h, w in cols)
+                separator = "-+-".join("-" * w for _, w in cols)
+                print(f"\n{title}:")
+                print(header_line)
+                print(separator)
+                for r in rows[:max_rows]:
+                    cells = [
+                        ellipsize(r.get("name", ""), cols[0][1]).ljust(cols[0][1]),
+                        ellipsize(r.get("url", ""), cols[1][1]).ljust(cols[1][1]),
+                        ellipsize(r.get("cfp", ""), cols[2][1]).ljust(cols[2][1]),
+                    ]
+                    print(" | ".join(cells))
+                if len(rows) > max_rows:
+                    print(f"... and {len(rows) - max_rows} more")
+            print_table("Created", result.get("created_items", []))
+            print_table("Updated", result.get("updated_items", []))
+        except Exception as e:
+            print(f"Could not print upsert summary tables: {e}")
+        # Defaults for reconcile summary
+        rec_summary = {"scanned": 0, "affected": 0}
+        rec_mode = None
         if args.reconcile_missing:
             # Respect --limit for reconcile: only consider the first N events when provided
             subset = events[: args.limit] if args.limit is not None else events
@@ -459,6 +577,23 @@ def main() -> None:
             rec = reconcile_missing(current_keys, dry_run=args.dry_run, rps=args.rps, archive=args.archive_missing)
             mode = "archived" if args.archive_missing else "marked closed"
             print(f"Reconcile complete: scanned={rec['scanned']} {mode}={rec['affected']}")
+            rec_summary = rec
+            rec_mode = mode
+        # Final concise summary (rows, simple, prefixed by '|')
+        try:
+            print("\nSummary:")
+            print(f"| created: {result['created']}")
+            print(f"| updated: {result['updated']}")
+            print(f"| processed: {result['processed']}")
+            if rec_mode is not None:
+                print(f"| scanned: {rec_summary.get('scanned', 0)}")
+                print(f"| {rec_mode}: {rec_summary.get('affected', 0)}")
+            if args.limit is not None:
+                print(f"| limit: {args.limit}")
+            if args.dry_run:
+                print("| dry-run")
+        except Exception:
+            pass
     except requests.HTTPError as e:
         print(f"HTTP error: {getattr(e.response, 'status_code', '?')} {getattr(e.response, 'text', '')}")
         raise

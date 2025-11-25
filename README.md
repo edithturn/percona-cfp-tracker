@@ -2,6 +2,13 @@
 
 Track open CFPs, keep a clean JSON database, and sync to a Notion database.
 
+## Data source
+- We fetch open CFP data daily from the open‑source project [developers.events](https://developers.events/), created by Aurélie Vache and maintained by the community.
+- We consume the public JSON feeds provided by developers.events. 
+  - ALL_EVENTS_URL → https://developers.events/all-events.json
+  - ALL_CFPS_URL → https://developers.events/all-cfps.json
+
+
 ## Repo layout
 - `data/` JSON database and CSV export
 - `scripts/` pipeline and utilities
@@ -25,61 +32,71 @@ source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
-Note: Activate the venv each new shell: `source .venv/bin/activate`.
 
-## Daily workflow (recommended)
-1) Fetch and update the local DB (only open CFPs)
-```bash
-python -m scripts.main
-```
-2) Upsert current events into Notion (creates/updates)
-```bash
-export NOTION_API_TOKEN='secret_...'
-export NOTION_DATABASE_ID='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
-python -m scripts.sync_notion
-```
-3) Close any pages missing from today’s JSON (or archive)
-```bash
-python -m scripts.sync_notion --reconcile-missing
-# or: python -m scripts.sync_notion --reconcile-missing --archive-missing
-```
+## Automated daily run (what happens every day)
 
-Reconcile (mark pages not in JSON as “[CFP] Status = Closed”, or archive with the flag):
-```bash
-
-# Safe preview first (no writes):
-python -m scripts.sync_notion --reconcile-missing --dry-run
-
-# Only consider the first N JSON rows for reconcile
-python -m scripts.sync_notion --limit N --reconcile-missing --skip-upsert
-
-```
-
-```
-Notes:
-- Upsert writes source-driven fields (Name, Technology, URL, CFP URL, CFP Dates, Date, Event Location).
-- “[CFP] Status” (Status property in Notion) is set to Open on create and to Closed during reconcile; otherwise we don’t overwrite it.
-- Use `--rps 2` if you hit Notion rate limits.
-
-### Expected Notion properties
-- Name (Title)
-- URL (URL)
-- CFP URL (URL)
-- CFP Dates (Date)
-- Date (Date; start/end supported)
-- Event Location (Rich text)
-- Technology (Multi-select)
-- [CFP] Status (Status: Open, Active, Sent to Slack, Closed, Archived, Needs Review)
-
-## Data source overrides (optional)
-- `ALL_EVENTS_URL`
-- `ALL_CFPS_URL`
-Defaults (if not set) pull from developers.events:
-- ALL_EVENTS_URL → https://developers.events/all-events.json
-- ALL_CFPS_URL → https://developers.events/all-cfps.json
-
-## GitHub Actions (optional)
 Runs daily at 06:00 UTC:
 - File: `.github/workflows/daily-update.yml`
 - Command: `python -m scripts.main`
-- Schedule: `0 6 * * *`
+- Schedule: `0 4 * * *` 
+
+This project runs automatically every day at 06:00 UTC (GitHub Actions). The job performs two steps in order:
+
+1) Build/update the local JSON database (only open CFPs)
+   - Command: `python -m scripts.main`
+2) Sync to Notion and reconcile missing pages
+   - Command: `python -m scripts.sync_notion --reconcile-missing`
+
+ 
+## What the Notion sync updates
+- On create:
+  - Sets core fields from JSON: Name, Technology, URL, CFP URL, CFP Dates, Date, Event Location
+  - If present in your database schema:
+    - `[CFP] Status` → Open
+    - `[CFP] Source` → developers.events
+- On update (idempotent upsert by URL):
+  - Only updates these source-controlled fields:
+    - `CFP Dates` (single date from cfp_close)
+    - `CFP URL`
+    - `Technology` (Multi-select): merges incoming tags with existing values (does not overwrite manual tags)
+  - All other properties (e.g., Name, Date, Event Location, `[CFP] Status`, `[CFP] Source`, category, notified, manual flags) are left untouched
+- Reconcile (`--reconcile-missing`):
+  - Scans only pages with `[CFP] Source = developers.events`
+  - Marks them Closed (or archives with `--archive-missing`) when their URL is no longer present in the current JSON
+
+## Run locally (manual testing)
+```bash
+# Prepare environment
+cd path/to/percona-cfp-tracker
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+
+# Upsert to Notion (preview first)
+export NOTION_API_TOKEN='secret_...'
+export NOTION_DATABASE_ID='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
+
+# Refresh local JSON (optionally limit for quick tests)
+python -m scripts.main --limit 10 # limit for testing
+python -m scripts.main # no limit
+
+# Apply and reconcile a small batch
+python -m scripts.sync_notion  --reconcile-missing --limit 10 # limit for testing
+python -m scripts.sync_notion --reconcile-missing # no limit
+
+# Note
+You can apply the flag  --dry-run to see what would be done without actually doing it.
+```
+### Expected Notion properties
+- Name (Title)
+- CFP Dates (Date)
+- CFP URL (URL)
+- Date (Date; start/end supported)
+- Event Location (Rich text)
+- URL (URL)
+- Technology (Multi-select)
+- [CFP] Status (Status: Open, Active, Sent to Slack, Closed, Archived, Needs Review)
+- [CPF] Source (Source: developers.events)
+
