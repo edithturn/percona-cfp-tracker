@@ -30,7 +30,7 @@
     ],
     "external_id": "developers-events::http-aprescyber-com::1772064000000",
     "created_at": "2025-11-25T12:53:09.585599+00:00",
-    "updated_at": "2025-11-26T04:09:09.372314+00:00",
+    "updated_at": "2025-11-27T04:07:05.513551+00:00",
     "cfp_close_date": "2025-11-28",
     "event_start_date": "2026-02-26",
     "event_end_date": "2026-02-27"
@@ -38,7 +38,7 @@
   {
     "name": "CloudLand",
     "hyperlink": "https://www.cloudland.org/",
-    "cfp_url": "https://my.doag.org/events/cloudland/cfp/",
+    "cfp_url": "https://www.cloudland.org/de/speaking/",
     "cfp_close": 1764288000000,
     "event_start": 1779148800000,
     "event_end": 1779408000000,
@@ -70,7 +70,7 @@
     ],
     "external_id": "developers-events::https-www-cloudland-org::1779148800000",
     "created_at": "2025-11-25T12:53:09.585667+00:00",
-    "updated_at": "2025-11-26T04:09:09.372352+00:00",
+    "updated_at": "2025-11-27T04:07:05.513572+00:00",
     "cfp_close_date": "2025-11-28",
     "event_start_date": "2026-05-19",
     "event_end_date": "2026-05-22"
@@ -106,7 +106,7 @@
     ],
     "external_id": "developers-events::https-gdg-community-dev-events-details-google-gdg-yerevan-presents-devfest-armenia-2025::1766188800000",
     "created_at": "2025-11-25T12:53:09.585682+00:00",
-    "updated_at": "2025-11-26T04:09:09.372375+00:00",
+    "updated_at": "2025-11-27T04:07:05.513586+00:00",
     "cfp_close_date": "2025-11-29",
     "event_start_date": "2025-12-20"
   },
@@ -137,7 +137,7 @@
     ],
     "external_id": "developers-events::https-devfe-st-kathmandu::1764979200000",
     "created_at": "2025-11-25T12:53:09.585694+00:00",
-    "updated_at": "2025-11-26T04:09:09.372395+00:00",
+    "updated_at": "2025-11-27T04:07:05.513597+00:00",
     "cfp_close_date": "2025-11-30",
     "event_start_date": "2025-12-06"
   },
@@ -176,7 +176,7 @@
     ],
     "external_id": "developers-events::https-gdg-community-dev-events-details-google-gdg-kigali-presents-devfest-kigali-2025::1766102400000",
     "created_at": "2025-11-25T12:53:09.585703+00:00",
-    "updated_at": "2025-11-26T04:09:09.372419+00:00",
+    "updated_at": "2025-11-27T04:07:05.513610+00:00",
     "cfp_close_date": "2025-11-30",
     "event_start_date": "2025-12-19",
     "event_end_date": "2025-12-20"
@@ -212,7 +212,7 @@
     ],
     "external_id": "developers-events::https-gdg-community-dev-events-details-google-gdg-gwalior-presents-devfest-gwalior-2025::1766188800000",
     "created_at": "2025-11-25T12:53:09.585714+00:00",
-    "updated_at": "2025-11-26T04:09:09.372436+00:00",
+    "updated_at": "2025-11-27T04:07:05.513620+00:00",
     "cfp_close_date": "2025-11-30",
     "event_start_date": "2025-12-20"
   },
@@ -247,7 +247,7 @@
     ],
     "external_id": "developers-events::https-gdg-community-dev-events-details-google-gdg-makassar-presents-devfest-makassar-2025::1766188800000",
     "created_at": "2025-11-25T12:53:09.585723+00:00",
-    "updated_at": "2025-11-26T04:09:09.372454+00:00",
+    "updated_at": "2025-11-27T04:07:05.513630+00:00",
     "cfp_close_date": "2025-11-30",
     "event_start_date": "2025-12-20"
   },
@@ -282,7 +282,7 @@
     ],
     "external_id": "developers-events::http-www-cybersec-asia-net::1770163200000",
     "created_at": "2025-11-25T12:53:09.585734+00:00",
-    "updated_at": "2025-11-26T04:09:09.372487+00:00",
+    "updated_at": "2025-11-27T04:07:05.513647+00:00",
     "cfp_close_date": "2025-11-30",
     "event_start_date": "2026-02-04",
     "event_end_date": "2026-02-05"
@@ -314,7 +314,7 @@
     ],
     "external_id": "developers-events::https-conferences-codemotion-com-madrid::1776643200000",
     "created_at": "2025-11-25T12:53:09.585747+00:00",
-    "updated_at": "2025-11-26T04:09:09.372514+00:00",
+    "updated_at": "2025-11-27T04:07:05.513661+00:00",
     "cfp_close_date": "2025-11-30",
     "event_start_date": "2026-04-20",
     "event_end_date": "2026-04-21"
@@ -350,7 +350,7 @@
     ],
     "external_id": "developers-events::https-devopscon-io::1776643200000",
     "created_at": "2025-11-25T12:53:09.585759+00:00",
-    "updated_at": "2025-11-26T04:09:09.372538+00:00",
+    "updated_at": "2025-11-27T04:07:05.513674+00:00",
     "cfp_close_date": "2025-11-30",
     "event_start_date": "2026-04-20",
     "event_end_date": "2026-04-24"
@@ -386,7 +386,7 @@
     ],
     "external_id": "developers-events::https-stackconf-eu::1777334400000",
     "created_at": "2025-11-25T12:53:09.585770+00:00",
-    "updated_at": "2025-11-26T04:09:09.372560+00:00",
+    "updated_at": "2025-11-27T04:07:05.513686+00:00",
     "cfp_close_date": "2025-11-30",
     "event_start_date": "2026-04-28",
     "event_end_date": "2026-04-29"
@@ -418,7 +418,7 @@
     ],
     "external_id": "developers-events::https-kotlinconf-com::1779235200000",
     "created_at": "2025-11-25T12:53:09.585780+00:00",
-    "updated_at": "2025-11-26T04:09:09.372585+00:00",
+    "updated_at": "2025-11-27T04:07:05.513697+00:00",
     "cfp_close_date": "2025-11-30",
     "event_start_date": "2026-05-20",
     "event_end_date": "2026-05-22"
@@ -450,7 +450,7 @@
     ],
     "external_id": "developers-events::https-www-programmez-com-page-devcons::1769040000000",
     "created_at": "2025-11-25T12:53:09.585790+00:00",
-    "updated_at": "2025-11-26T04:09:09.372603+00:00",
+    "updated_at": "2025-11-27T04:07:05.513737+00:00",
     "cfp_close_date": "2025-12-01",
     "event_start_date": "2026-01-22"
   },
@@ -477,7 +477,7 @@
     ],
     "external_id": "developers-events::https-www-intelliguards-com-intellic0n::1770336000000",
     "created_at": "2025-11-25T12:53:09.585798+00:00",
-    "updated_at": "2025-11-26T04:09:09.372620+00:00",
+    "updated_at": "2025-11-27T04:07:05.513747+00:00",
     "cfp_close_date": "2025-12-01",
     "event_start_date": "2026-02-06"
   },
@@ -512,7 +512,7 @@
     ],
     "external_id": "developers-events::https-zurich-voxxeddays-com::1774310400000",
     "created_at": "2025-11-25T12:53:09.585806+00:00",
-    "updated_at": "2025-11-26T04:09:09.372657+00:00",
+    "updated_at": "2025-11-27T04:07:05.513756+00:00",
     "cfp_close_date": "2025-12-01",
     "event_start_date": "2026-03-24"
   },
@@ -547,7 +547,7 @@
     ],
     "external_id": "developers-events::https-rubyconf-at::1780012800000",
     "created_at": "2025-11-25T12:53:09.585813+00:00",
-    "updated_at": "2025-11-26T04:09:09.372682+00:00",
+    "updated_at": "2025-11-27T04:07:05.513768+00:00",
     "cfp_close_date": "2025-12-01",
     "event_start_date": "2026-05-29",
     "event_end_date": "2026-05-31"
@@ -579,7 +579,7 @@
     ],
     "external_id": "developers-events::https-vslive-com-events-microsofthq-2026-home-aspx::1785110400000",
     "created_at": "2025-11-25T12:53:09.585824+00:00",
-    "updated_at": "2025-11-26T04:09:09.372705+00:00",
+    "updated_at": "2025-11-27T04:07:05.513779+00:00",
     "cfp_close_date": "2025-12-01",
     "event_start_date": "2026-07-27",
     "event_end_date": "2026-07-31"
@@ -607,7 +607,7 @@
     ],
     "external_id": "developers-events::https-programmable-tech::1773705600000",
     "created_at": "2025-11-25T12:53:09.585834+00:00",
-    "updated_at": "2025-11-26T04:09:09.372720+00:00",
+    "updated_at": "2025-11-27T04:07:05.513798+00:00",
     "cfp_close_date": "2025-12-02",
     "event_start_date": "2026-03-17"
   },
@@ -634,7 +634,7 @@
     ],
     "external_id": "developers-events::https-programmable-tech::1773878400000",
     "created_at": "2025-11-25T12:53:09.585842+00:00",
-    "updated_at": "2025-11-26T04:09:09.372734+00:00",
+    "updated_at": "2025-11-27T04:07:05.513807+00:00",
     "cfp_close_date": "2025-12-02",
     "event_start_date": "2026-03-19"
   },
@@ -669,7 +669,7 @@
     ],
     "external_id": "developers-events::https-www-kcddelhi-com::1771632000000",
     "created_at": "2025-11-25T12:53:09.585850+00:00",
-    "updated_at": "2025-11-26T04:09:09.372749+00:00",
+    "updated_at": "2025-11-27T04:07:05.513816+00:00",
     "cfp_close_date": "2025-12-04",
     "event_start_date": "2026-02-21"
   },
@@ -700,7 +700,7 @@
     ],
     "external_id": "developers-events::https-ndcsydney-com::1776643200000",
     "created_at": "2025-11-25T12:53:09.585857+00:00",
-    "updated_at": "2025-11-26T04:09:09.372768+00:00",
+    "updated_at": "2025-11-27T04:07:05.513828+00:00",
     "cfp_close_date": "2025-12-06",
     "event_start_date": "2026-04-20",
     "event_end_date": "2026-04-24"
@@ -728,7 +728,7 @@
     ],
     "external_id": "developers-events::https-www-pytexas-org-2026::1776384000000",
     "created_at": "2025-11-25T12:53:09.585868+00:00",
-    "updated_at": "2025-11-26T04:09:09.372787+00:00",
+    "updated_at": "2025-11-27T04:07:05.513839+00:00",
     "cfp_close_date": "2025-12-07",
     "event_start_date": "2026-04-17",
     "event_end_date": "2026-04-19"
@@ -760,7 +760,7 @@
     ],
     "external_id": "developers-events::https-greenio-tech-conference-17-paris-2025-december::1765238400000",
     "created_at": "2025-11-25T12:53:09.585878+00:00",
-    "updated_at": "2025-11-26T04:09:09.372807+00:00",
+    "updated_at": "2025-11-27T04:07:05.513851+00:00",
     "cfp_close_date": "2025-12-09",
     "event_start_date": "2025-12-09",
     "event_end_date": "2025-12-11"
@@ -788,7 +788,7 @@
     ],
     "external_id": "developers-events::https-codebeamvancouver-com::1774224000000",
     "created_at": "2025-11-25T12:53:09.585888+00:00",
-    "updated_at": "2025-11-26T04:09:09.372822+00:00",
+    "updated_at": "2025-11-27T04:07:05.513861+00:00",
     "cfp_close_date": "2025-12-14",
     "event_start_date": "2026-03-23"
   },
@@ -819,7 +819,7 @@
     ],
     "external_id": "developers-events::https-datagrillen-com::1779321600000",
     "created_at": "2025-11-25T12:53:09.585896+00:00",
-    "updated_at": "2025-11-26T04:09:09.372843+00:00",
+    "updated_at": "2025-11-27T04:07:05.513873+00:00",
     "cfp_close_date": "2025-12-14",
     "event_start_date": "2026-05-21",
     "event_end_date": "2026-05-22"
@@ -838,7 +838,7 @@
     "source_tags": [],
     "external_id": "developers-events::https-perlcommunity-org::1765929600000",
     "created_at": "2025-11-25T12:53:09.585906+00:00",
-    "updated_at": "2025-11-26T04:09:09.372864+00:00",
+    "updated_at": "2025-11-27T04:07:05.513884+00:00",
     "cfp_close_date": "2025-12-15",
     "event_start_date": "2025-12-17",
     "event_end_date": "2025-12-18"
@@ -886,7 +886,7 @@
     ],
     "external_id": "developers-events::https-summit-fossasia-org::1773014400000",
     "created_at": "2025-11-25T12:53:09.585916+00:00",
-    "updated_at": "2025-11-26T04:09:09.372885+00:00",
+    "updated_at": "2025-11-27T04:07:05.513907+00:00",
     "cfp_close_date": "2025-12-15",
     "event_start_date": "2026-03-09",
     "event_end_date": "2026-03-10"
@@ -914,7 +914,7 @@
     ],
     "external_id": "developers-events::https-futuretech-nl::1773187200000",
     "created_at": "2025-11-25T12:53:09.585927+00:00",
-    "updated_at": "2025-11-26T04:09:09.372901+00:00",
+    "updated_at": "2025-11-27T04:07:05.513916+00:00",
     "cfp_close_date": "2025-12-15",
     "event_start_date": "2026-03-11"
   },
@@ -945,7 +945,7 @@
     ],
     "external_id": "developers-events::https-conferences-codemotion-com-roma::1774915200000",
     "created_at": "2025-11-25T12:53:09.585934+00:00",
-    "updated_at": "2025-11-26T04:09:09.372916+00:00",
+    "updated_at": "2025-11-27T04:07:05.513924+00:00",
     "cfp_close_date": "2025-12-15",
     "event_start_date": "2026-03-31"
   },
@@ -976,7 +976,7 @@
     ],
     "external_id": "developers-events::https-www-javaday-istanbul::1778284800000",
     "created_at": "2025-11-25T12:53:09.585942+00:00",
-    "updated_at": "2025-11-26T04:09:09.372931+00:00",
+    "updated_at": "2025-11-27T04:07:05.513933+00:00",
     "cfp_close_date": "2025-12-15",
     "event_start_date": "2026-05-09"
   },
@@ -1011,7 +1011,7 @@
     ],
     "external_id": "developers-events::https-sqlday-pl::1778457600000",
     "created_at": "2025-11-25T12:53:09.585950+00:00",
-    "updated_at": "2025-11-26T04:09:09.372952+00:00",
+    "updated_at": "2025-11-27T04:07:05.513945+00:00",
     "cfp_close_date": "2025-12-15",
     "event_start_date": "2026-05-11",
     "event_end_date": "2026-05-13"
@@ -1047,7 +1047,7 @@
     ],
     "external_id": "developers-events::https-dawn-tech-evenement-dutch-php-conference-2026::1773100800000",
     "created_at": "2025-11-25T12:53:09.585960+00:00",
-    "updated_at": "2025-11-26T04:09:09.372973+00:00",
+    "updated_at": "2025-11-27T04:07:05.513956+00:00",
     "cfp_close_date": "2025-12-19",
     "event_start_date": "2026-03-10",
     "event_end_date": "2026-03-13"
@@ -1083,7 +1083,7 @@
     ],
     "external_id": "developers-events::https-dawn-tech-evenement-appdevcon-conference-2026::1773100800000",
     "created_at": "2025-11-25T12:53:09.585970+00:00",
-    "updated_at": "2025-11-26T04:09:09.372995+00:00",
+    "updated_at": "2025-11-27T04:07:05.513968+00:00",
     "cfp_close_date": "2025-12-19",
     "event_start_date": "2026-03-10",
     "event_end_date": "2026-03-13"
@@ -1119,7 +1119,7 @@
     ],
     "external_id": "developers-events::https-dawn-tech-evenement-webdevcon-conference-2026::1773100800000",
     "created_at": "2025-11-25T12:53:09.585980+00:00",
-    "updated_at": "2025-11-26T04:09:09.373019+00:00",
+    "updated_at": "2025-11-27T04:07:05.513979+00:00",
     "cfp_close_date": "2025-12-19",
     "event_start_date": "2026-03-10",
     "event_end_date": "2026-03-13"
@@ -1155,7 +1155,7 @@
     ],
     "external_id": "developers-events::https-romania-voxxeddays-com-voxxed-days-bucharest-2026::1777334400000",
     "created_at": "2025-11-25T12:53:09.585990+00:00",
-    "updated_at": "2025-11-26T04:09:09.373040+00:00",
+    "updated_at": "2025-11-27T04:07:05.513991+00:00",
     "cfp_close_date": "2025-12-21",
     "event_start_date": "2026-04-28",
     "event_end_date": "2026-04-29"
@@ -1183,7 +1183,7 @@
     ],
     "external_id": "developers-events::https-www-ministryoftesting-com-events-testbash-brighton-2025::1759276800000",
     "created_at": "2025-11-25T12:53:09.586000+00:00",
-    "updated_at": "2025-11-26T04:09:09.373061+00:00",
+    "updated_at": "2025-11-27T04:07:05.514002+00:00",
     "cfp_close_date": "2025-12-22",
     "event_start_date": "2025-10-01",
     "event_end_date": "2025-10-02"
@@ -1215,7 +1215,7 @@
     ],
     "external_id": "developers-events::https-www-bsidesprg-cz::1776902400000",
     "created_at": "2025-11-25T12:53:09.586010+00:00",
-    "updated_at": "2025-11-26T04:09:09.373081+00:00",
+    "updated_at": "2025-11-27T04:07:05.514014+00:00",
     "cfp_close_date": "2025-12-24",
     "event_start_date": "2026-04-23",
     "event_end_date": "2026-04-24"
@@ -1247,7 +1247,7 @@
     ],
     "external_id": "developers-events::https-balticruby-org::1781222400000",
     "created_at": "2025-11-25T12:53:09.586021+00:00",
-    "updated_at": "2025-11-26T04:09:09.373103+00:00",
+    "updated_at": "2025-11-27T04:07:05.514025+00:00",
     "cfp_close_date": "2025-12-31",
     "event_start_date": "2026-06-12",
     "event_end_date": "2026-06-13"
@@ -1279,7 +1279,7 @@
     ],
     "external_id": "developers-events::https-mixitconf-org::1776297600000",
     "created_at": "2025-11-25T12:53:09.586031+00:00",
-    "updated_at": "2025-11-26T04:09:09.373123+00:00",
+    "updated_at": "2025-11-27T04:07:05.514037+00:00",
     "cfp_close_date": "2026-01-04",
     "event_start_date": "2026-04-16",
     "event_end_date": "2026-04-17"
@@ -1311,7 +1311,7 @@
     ],
     "external_id": "developers-events::https-agileniort-fr::1773792000000",
     "created_at": "2025-11-25T12:53:09.586042+00:00",
-    "updated_at": "2025-11-26T04:09:09.373143+00:00",
+    "updated_at": "2025-11-27T04:07:05.514048+00:00",
     "cfp_close_date": "2026-01-06",
     "event_start_date": "2026-03-18",
     "event_end_date": "2026-03-19"
@@ -1339,7 +1339,7 @@
     ],
     "external_id": "developers-events::https-www-elixirconf-eu::1776816000000",
     "created_at": "2025-11-25T12:53:09.586052+00:00",
-    "updated_at": "2025-11-26T04:09:09.373164+00:00",
+    "updated_at": "2025-11-27T04:07:05.514059+00:00",
     "cfp_close_date": "2026-01-06",
     "event_start_date": "2026-04-22",
     "event_end_date": "2026-04-24"
@@ -1371,7 +1371,7 @@
     ],
     "external_id": "developers-events::https-blastoffrails-com::1781136000000",
     "created_at": "2025-11-25T12:53:09.586063+00:00",
-    "updated_at": "2025-11-26T04:09:09.373185+00:00",
+    "updated_at": "2025-11-27T04:07:05.514079+00:00",
     "cfp_close_date": "2026-01-11",
     "event_start_date": "2026-06-11",
     "event_end_date": "2026-06-12"
@@ -1407,7 +1407,7 @@
     ],
     "external_id": "developers-events::https-cyphercon-com::1775001600000",
     "created_at": "2025-11-25T12:53:09.586073+00:00",
-    "updated_at": "2025-11-26T04:09:09.373206+00:00",
+    "updated_at": "2025-11-27T04:07:05.514091+00:00",
     "cfp_close_date": "2026-01-12",
     "event_start_date": "2026-04-01",
     "event_end_date": "2026-04-02"
@@ -1439,7 +1439,7 @@
     ],
     "external_id": "developers-events::https-wrocloverb-com::1776384000000",
     "created_at": "2025-11-25T12:53:09.586083+00:00",
-    "updated_at": "2025-11-26T04:09:09.373227+00:00",
+    "updated_at": "2025-11-27T04:07:05.514104+00:00",
     "cfp_close_date": "2026-01-13",
     "event_start_date": "2026-04-17",
     "event_end_date": "2026-04-19"
@@ -1479,7 +1479,7 @@
     ],
     "external_id": "developers-events::https-2026-dddeurope-com::1780876800000",
     "created_at": "2025-11-25T12:53:09.586093+00:00",
-    "updated_at": "2025-11-26T04:09:09.373247+00:00",
+    "updated_at": "2025-11-27T04:07:05.514116+00:00",
     "cfp_close_date": "2026-01-16",
     "event_start_date": "2026-06-08",
     "event_end_date": "2026-06-12"
@@ -1519,7 +1519,7 @@
     ],
     "external_id": "developers-events::https-2026-datameshlive-com::1781136000000",
     "created_at": "2025-11-25T12:53:09.586103+00:00",
-    "updated_at": "2025-11-26T04:09:09.373267+00:00",
+    "updated_at": "2025-11-27T04:07:05.514128+00:00",
     "cfp_close_date": "2026-01-16",
     "event_start_date": "2026-06-11",
     "event_end_date": "2026-06-12"
@@ -1555,7 +1555,7 @@
     ],
     "external_id": "developers-events::https-www-wearedevelopers-com-world-congress::1783468800000",
     "created_at": "2025-11-25T12:53:09.586113+00:00",
-    "updated_at": "2025-11-26T04:09:09.373291+00:00",
+    "updated_at": "2025-11-27T04:07:05.514140+00:00",
     "cfp_close_date": "2026-01-16",
     "event_start_date": "2026-07-08",
     "event_end_date": "2026-07-10"
@@ -1583,7 +1583,7 @@
     ],
     "external_id": "developers-events::https-sreday-com-2026-london-q1::1773273600000",
     "created_at": "2025-11-25T12:53:09.586123+00:00",
-    "updated_at": "2025-11-26T04:09:09.373308+00:00",
+    "updated_at": "2025-11-27T04:07:05.514149+00:00",
     "cfp_close_date": "2026-01-30",
     "event_start_date": "2026-03-12"
   },
@@ -1610,7 +1610,7 @@
     ],
     "external_id": "developers-events::https-hackconrd-org::1774569600000",
     "created_at": "2025-11-25T12:53:09.586130+00:00",
-    "updated_at": "2025-11-26T04:09:09.373331+00:00",
+    "updated_at": "2025-11-27T04:07:05.514160+00:00",
     "cfp_close_date": "2026-01-31",
     "event_start_date": "2026-03-27",
     "event_end_date": "2026-03-28"
@@ -1642,7 +1642,7 @@
     ],
     "external_id": "developers-events::https-www-modernsecurity-io::1777075200000",
     "created_at": "2025-11-25T12:53:09.586141+00:00",
-    "updated_at": "2025-11-26T04:09:09.373350+00:00",
+    "updated_at": "2025-11-27T04:07:05.514169+00:00",
     "cfp_close_date": "2026-01-31",
     "event_start_date": "2026-04-25"
   },
@@ -1673,7 +1673,7 @@
     ],
     "external_id": "developers-events::https-www-devopsdays-ch::1778025600000",
     "created_at": "2025-11-25T12:53:09.586148+00:00",
-    "updated_at": "2025-11-26T04:09:09.373373+00:00",
+    "updated_at": "2025-11-27T04:07:05.514181+00:00",
     "cfp_close_date": "2026-01-31",
     "event_start_date": "2026-05-06",
     "event_end_date": "2026-05-07"
@@ -1705,7 +1705,7 @@
     ],
     "external_id": "developers-events::https-weblica-hr::1778198400000",
     "created_at": "2025-11-25T12:53:09.586158+00:00",
-    "updated_at": "2025-11-26T04:09:09.373391+00:00",
+    "updated_at": "2025-11-27T04:07:05.514189+00:00",
     "cfp_close_date": "2026-01-31",
     "event_start_date": "2026-05-08"
   },
@@ -1736,7 +1736,7 @@
     ],
     "external_id": "developers-events::https-devopsdays-org-events-2026-prague-welcome::1777420800000",
     "created_at": "2025-11-25T12:53:09.586166+00:00",
-    "updated_at": "2025-11-26T04:09:09.373407+00:00",
+    "updated_at": "2025-11-27T04:07:05.514198+00:00",
     "cfp_close_date": "2026-02-01",
     "event_start_date": "2026-04-29"
   },
@@ -1771,7 +1771,7 @@
     ],
     "external_id": "developers-events::https-webdays-events::1769990400000",
     "created_at": "2025-11-25T12:53:09.586173+00:00",
-    "updated_at": "2025-11-26T04:09:09.373429+00:00",
+    "updated_at": "2025-11-27T04:07:05.514209+00:00",
     "cfp_close_date": "2026-02-02",
     "event_start_date": "2026-02-02",
     "event_end_date": "2026-02-06"
@@ -1807,7 +1807,7 @@
     ],
     "external_id": "developers-events::https-devopsdays-org-events-2026-geneva-welcome::1779321600000",
     "created_at": "2025-11-25T12:53:09.586183+00:00",
-    "updated_at": "2025-11-26T04:09:09.373451+00:00",
+    "updated_at": "2025-11-27T04:07:05.514220+00:00",
     "cfp_close_date": "2026-02-06",
     "event_start_date": "2026-05-21",
     "event_end_date": "2026-05-22"
@@ -1839,7 +1839,7 @@
     ],
     "external_id": "developers-events::https-xtremej-dev::1778544000000",
     "created_at": "2025-11-25T12:53:09.586193+00:00",
-    "updated_at": "2025-11-26T04:09:09.373467+00:00",
+    "updated_at": "2025-11-27T04:07:05.514229+00:00",
     "cfp_close_date": "2026-02-10",
     "event_start_date": "2026-05-12"
   },
@@ -1870,7 +1870,7 @@
     ],
     "external_id": "developers-events::https-xtremejs-dev::1779148800000",
     "created_at": "2025-11-25T12:53:09.586201+00:00",
-    "updated_at": "2025-11-26T04:09:09.373483+00:00",
+    "updated_at": "2025-11-27T04:07:05.514238+00:00",
     "cfp_close_date": "2026-02-10",
     "event_start_date": "2026-05-19"
   },
@@ -1901,7 +1901,7 @@
     ],
     "external_id": "developers-events::https-xtremepython-dev::1779753600000",
     "created_at": "2025-11-25T12:53:09.586208+00:00",
-    "updated_at": "2025-11-26T04:09:09.373499+00:00",
+    "updated_at": "2025-11-27T04:07:05.514246+00:00",
     "cfp_close_date": "2026-02-10",
     "event_start_date": "2026-05-26"
   },
@@ -1932,7 +1932,7 @@
     ],
     "external_id": "developers-events::https-xtremeai-dev::1780358400000",
     "created_at": "2025-11-25T12:53:09.586216+00:00",
-    "updated_at": "2025-11-26T04:09:09.373513+00:00",
+    "updated_at": "2025-11-27T04:07:05.514255+00:00",
     "cfp_close_date": "2026-02-10",
     "event_start_date": "2026-06-02"
   },
@@ -1967,7 +1967,7 @@
     ],
     "external_id": "developers-events::https-cfgmgmtcamp-org-ghent2026::1769990400000",
     "created_at": "2025-11-25T12:53:09.586223+00:00",
-    "updated_at": "2025-11-26T04:09:09.373533+00:00",
+    "updated_at": "2025-11-27T04:07:05.514267+00:00",
     "cfp_close_date": "2026-02-15",
     "event_start_date": "2026-02-02",
     "event_end_date": "2026-02-04"
@@ -1995,7 +1995,7 @@
     ],
     "external_id": "developers-events::https-monkigras-com::1773878400000",
     "created_at": "2025-11-25T12:53:09.586233+00:00",
-    "updated_at": "2025-11-26T04:09:09.373553+00:00",
+    "updated_at": "2025-11-27T04:07:05.514279+00:00",
     "cfp_close_date": "2026-02-28",
     "event_start_date": "2026-03-19",
     "event_end_date": "2026-03-20"
@@ -2031,7 +2031,7 @@
     ],
     "external_id": "developers-events::https-www-containerdays-io-containerdays-hamburg-2026::1788307200000",
     "created_at": "2025-11-25T12:53:09.586243+00:00",
-    "updated_at": "2025-11-26T04:09:09.373573+00:00",
+    "updated_at": "2025-11-27T04:07:05.514290+00:00",
     "cfp_close_date": "2026-02-28",
     "event_start_date": "2026-09-02",
     "event_end_date": "2026-09-04"
@@ -2087,7 +2087,7 @@
     ],
     "external_id": "developers-events::https-cloudnativedaysitaly-org::1779062400000",
     "created_at": "2025-11-25T12:53:09.586253+00:00",
-    "updated_at": "2025-11-26T04:09:09.373593+00:00",
+    "updated_at": "2025-11-27T04:07:05.514302+00:00",
     "cfp_close_date": "2026-03-06",
     "event_start_date": "2026-05-18",
     "event_end_date": "2026-05-19"
@@ -2119,7 +2119,7 @@
     ],
     "external_id": "developers-events::https-www-cfcamp-org::1781740800000",
     "created_at": "2025-11-25T12:53:09.586264+00:00",
-    "updated_at": "2025-11-26T04:09:09.373613+00:00",
+    "updated_at": "2025-11-27T04:07:05.514313+00:00",
     "cfp_close_date": "2026-03-09",
     "event_start_date": "2026-06-18",
     "event_end_date": "2026-06-19"
@@ -2151,7 +2151,7 @@
     ],
     "external_id": "developers-events::https-devlille-fr::1783728000000",
     "created_at": "2025-11-25T12:53:09.586274+00:00",
-    "updated_at": "2025-11-26T04:09:09.373634+00:00",
+    "updated_at": "2025-11-27T04:07:05.514325+00:00",
     "cfp_close_date": "2026-03-31",
     "event_start_date": "2026-07-11",
     "event_end_date": "2026-07-12"
@@ -2187,7 +2187,7 @@
     ],
     "external_id": "developers-events::https-www-wearedevelopers-com-world-congress-us::1790121600000",
     "created_at": "2025-11-25T12:53:09.586284+00:00",
-    "updated_at": "2025-11-26T04:09:09.373687+00:00",
+    "updated_at": "2025-11-27T04:07:05.514337+00:00",
     "cfp_close_date": "2026-03-31",
     "event_start_date": "2026-09-23",
     "event_end_date": "2026-09-25"
@@ -2219,7 +2219,7 @@
     ],
     "external_id": "developers-events::https-greenio-tech-conference-18-singapore-2026-april-green-it::1776124800000",
     "created_at": "2025-11-25T12:53:09.586294+00:00",
-    "updated_at": "2025-11-26T04:09:09.373711+00:00",
+    "updated_at": "2025-11-27T04:07:05.514349+00:00",
     "cfp_close_date": "2026-04-14",
     "event_start_date": "2026-04-14",
     "event_end_date": "2026-04-15"
@@ -2247,9 +2247,83 @@
     ],
     "external_id": "developers-events::https-canada-cs4ca-com::1780358400000",
     "created_at": "2025-11-25T12:53:09.586304+00:00",
-    "updated_at": "2025-11-26T04:09:09.373733+00:00",
+    "updated_at": "2025-11-27T04:07:05.514361+00:00",
     "cfp_close_date": "2026-05-03",
     "event_start_date": "2026-06-02",
     "event_end_date": "2026-06-03"
+  },
+  {
+    "name": "Devfest'25 - GDG Mascara",
+    "hyperlink": "https://gdg.community.dev/events/details/google-gdg-mascara-presents-devfest-mascara-2025/",
+    "cfp_url": "https://app.advocu.com/events/691c5690c6be484f743f15d3",
+    "cfp_close": 1764547200000,
+    "event_start": 1766016000000,
+    "event_end": 1766188800000,
+    "location": "Mascara (Algeria)",
+    "city": "Mascara",
+    "country": "Algeria",
+    "source": "developers.events",
+    "source_tags": [],
+    "external_id": "developers-events::https-gdg-community-dev-events-details-google-gdg-mascara-presents-devfest-mascara-2025::1766016000000",
+    "created_at": "2025-11-27T04:07:05.513700+00:00",
+    "updated_at": "2025-11-27T04:07:05.513700+00:00",
+    "cfp_close_date": "2025-12-01",
+    "event_start_date": "2025-12-18",
+    "event_end_date": "2025-12-20"
+  },
+  {
+    "name": "DevFest El Jadida 2025",
+    "hyperlink": "https://gdg.community.dev/events/details/google-gdg-el-jadida-presents-devfest-el-jadida-2025/",
+    "cfp_url": "https://app.advocu.com/events/691b92b0234a7c480b699b91",
+    "cfp_close": 1764633600000,
+    "event_start": 1765584000000,
+    "event_end": null,
+    "location": "El Jadida (Morocco)",
+    "city": "El Jadida",
+    "country": "Morocco",
+    "source": "developers.events",
+    "source_tags": [],
+    "external_id": "developers-events::https-gdg-community-dev-events-details-google-gdg-el-jadida-presents-devfest-el-jadida-2025::1765584000000",
+    "created_at": "2025-11-27T04:07:05.513782+00:00",
+    "updated_at": "2025-11-27T04:07:05.513782+00:00",
+    "cfp_close_date": "2025-12-02",
+    "event_start_date": "2025-12-13"
+  },
+  {
+    "name": "DevFest Kashkadarya",
+    "hyperlink": "https://gdg.community.dev/events/details/google-gdg-qarshi-presents-post-devfest-kashkadarya-25/",
+    "cfp_url": "https://app.advocu.com/events/691f130d234a7c480b6a82fd",
+    "cfp_close": 1765756800000,
+    "event_start": 1766102400000,
+    "event_end": 1766188800000,
+    "location": "Qarshi (Uzbekistan)",
+    "city": "Qarshi",
+    "country": "Uzbekistan",
+    "source": "developers.events",
+    "source_tags": [],
+    "external_id": "developers-events::https-gdg-community-dev-events-details-google-gdg-qarshi-presents-post-devfest-kashkadarya-25::1766102400000",
+    "created_at": "2025-11-27T04:07:05.513887+00:00",
+    "updated_at": "2025-11-27T04:07:05.513887+00:00",
+    "cfp_close_date": "2025-12-15",
+    "event_start_date": "2025-12-19",
+    "event_end_date": "2025-12-20"
+  },
+  {
+    "name": "DevFest Heraklion 2026",
+    "hyperlink": "https://gdg.community.dev/events/details/google-gdg-heraklion-presents-devfest-heraklion-kickoff-unveiling-the-future-of-technology-and-business/",
+    "cfp_url": "https://docs.google.com/forms/d/e/1FAIpQLScyMP1zitVGgPNfs4FytJaxXgqeTjRI4ytvG0jXOCrkCDA0bw/viewform",
+    "cfp_close": 1768003200000,
+    "event_start": 1769212800000,
+    "event_end": null,
+    "location": "Heraklion (Greece)",
+    "city": "Heraklion",
+    "country": "Greece",
+    "source": "developers.events",
+    "source_tags": [],
+    "external_id": "developers-events::https-gdg-community-dev-events-details-google-gdg-heraklion-presents-devfest-heraklion-kickoff-unveiling-the-future-of-technology-and-business::1769212800000",
+    "created_at": "2025-11-27T04:07:05.514061+00:00",
+    "updated_at": "2025-11-27T04:07:05.514061+00:00",
+    "cfp_close_date": "2026-01-10",
+    "event_start_date": "2026-01-24"
   }
 ]
