@@ -3,7 +3,7 @@
 Track open CFPs, keep a clean JSON database, and sync to a Notion database.
 
 ## Data source
-- We fetch open CFP data daily from the open‑source project [developers.events](https://developers.events/), created by Aurélie Vache and maintained by the community.
+- We fetch open CFP data daily from the open‑source project [developers.events](https://developers.events/), created by [Aurélie Vache](https://www.linkedin.com/in/aurelievache/) and maintained by her and the community.
 - We consume the public JSON feeds provided by developers.events. 
   - ALL_EVENTS_URL → https://developers.events/all-events.json
   - ALL_CFPS_URL → https://developers.events/all-cfps.json
